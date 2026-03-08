@@ -15,6 +15,10 @@ body{font-family:'Inter',sans-serif;background:#0d1b2a;color:var(--txt);overflow
 /* ===== HEADER ===== */
 header{position:fixed;top:0;left:0;width:100%;height:var(--nav-h);padding:0 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.35);backdrop-filter:blur(8px);z-index:1000}
 .logo{display:flex;align-items:center;gap:.5rem;font-size:1.125rem;font-weight:600}
+.logo-img {
+  height: 200px;
+  vertical-align: middle;
+}
 .hamburger{width:32px;height:21px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer}
 .hamburger span{height:3px;background:var(--txt);border-radius:3px;transition:.3s}
 #menuToggle:checked+label .bar1{transform:rotate(45deg) translate(5px,6px)}
