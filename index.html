@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexusAI – Consultoría de Innovación e IA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span style="font-size: 1.5rem; color: var(--accent);"><i class="fas fa-brain"></i></span>
+      NexusAI
+    </div>    
+    <input type="checkbox" id="menuToggle" hidden>
+    <label for="menuToggle" class="hamburger"><span class="bar1"></span><span class="bar2"></span><span class="bar3"></span></label>
+  </header>
+
+  <nav id="sideMenu">
+    <button class="close-btn" aria-label="Close menu">&times;</button>
+    <div class="menu-inner">
+      <div class="menu-nav">
+        <h3>Navegación</h3>
+        <ul>
+          <li><a href="#">Inicio</a></li><li><a href="#">Servicios</a></li>
+          <li><a href="#">Nosotros</a></li><li><a href="#">Equipo</a></li>
+          <li><a href="#">Blog</a></li><li><a href="#">Contacto</a></li>
+        </ul>
+        <div class="menu-social">
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-x-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="extra-section">
+        <h4>Comencemos</h4>
+        <a href="#" class="cta-btn">Agendar Asesoría <span class="arrow"><i class="fas fa-arrow-up-right-from-square"></i></span></a>
+        <div class="post-card">
+          <h4>Último Caso de Éxito</h4>
+          <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=640" alt="post">
+          <p class="title">Cómo la automatización con IA redujo costos operativos en un 40%</p>
+          <div class="meta"><span></span><span>28.01.2026</span></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="hero">
+    <canvas id="graph-canvas"></canvas>
+    <div class="cursor-dot"></div>
+    <h1>Liderando el futuro de tu empresa con Inteligencia Artificial e Innovación</h1>
+    <div class="cards">
+      <article class="card">Acelera tu transformación digital con estrategias de IA adaptadas a los desafíos únicos de tu industria y modelo de negocio.</article>
+      <article class="card">Descubre nuevas oportunidades de crecimiento, optimiza tus operaciones y reduce costos a través de la automatización inteligente.</article>
+    </div>
+  </main>
+
+  <section class="logos-section">
+    <div class="backed-label">Con la confianza de:</div>
+    <div class="logo-track" role="marquee" aria-label="Partner logos">
+      <img src="https://logoipsum.com/logo/logo-1.svg" alt="Client 1">
+      <img src="https://logoipsum.com/logo/logo-2.svg" alt="Client 2">
+      <img src="https://logoipsum.com/logo/logo-3.svg" alt="Client 3">
+      <img src="https://logoipsum.com/logo/logo-4.svg" alt="Client 4">
+      <img src="https://logoipsum.com/logo/logo-5.svg" alt="Client 5">
+      <img src="https://logoipsum.com/logo/logo-6.svg" alt="Client 6">
+      <img src="https://logoipsum.com/logo/logo-1.svg" alt="Client 1">
+      <img src="https://logoipsum.com/logo/logo-2.svg" alt="Client 2">
+      <img src="https://logoipsum.com/logo/logo-3.svg" alt="Client 3">
+      <img src="https://logoipsum.com/logo/logo-4.svg" alt="Client 4">
+      <img src="https://logoipsum.com/logo/logo-5.svg" alt="Client 5">
+      <img src="https://logoipsum.com/logo/logo-6.svg" alt="Client 6">
+    </div>
+  </section>
+
+  <section class="intro-section">
+    <div class="tag">Nuestro Enfoque</div>
+    <h2>Transformando la complejidad tecnológica en resultados medibles.</h2>
+    <p>Llevamos la innovación al núcleo de tu organización. Diseñamos e implementamos soluciones tecnológicas que convierten la Inteligencia Artificial y los datos en tu mayor ventaja competitiva.</p>
+    <p>Desde la consultoría estratégica hasta el desarrollo a medida, te acompañamos en cada paso para asegurar una adopción tecnológica segura, ética y escalable.</p>
+    <a href="#" class="intro-btn">Conoce Nuestra Metodología <span class="arrow"><i class="fas fa-arrow-up-right-from-square"></i></span></a>
+  </section>
+
+  <section class="platforms-section">
+    <div class="platforms-wrapper">
+      <div class="platforms-text">
+        <div class="tag">Qué Hacemos</div>
+        <h2>Nuestros Servicios</h2>
+        <p>Revolucionamos la forma en que operas integrando tecnología de vanguardia. Nuestras áreas de expertise están diseñadas para escalar tu negocio de manera inteligente.</p>
+        <a href="#" class="platforms-btn">Explorar Servicios <span class="arrow"><i class="fas fa-arrow-up-right-from-square"></i></span></a>
+      </div>
+      <div class="platforms-grid">
+        <div class="platform-card"><span class="badge bg-beige">Consultoría</span><i class="fas fa-chess-knight"></i><span class="name">Estrategia IA <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.8rem; margin:0; opacity: 1; color: var(--txt);"></i></span></div>
+        <div class="platform-card"><span class="badge bg-mint">RPA & Agentes</span><i class="fas fa-robot"></i><span class="name">Automatización <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.8rem; margin:0; opacity: 1; color: var(--txt);"></i></span></div>
+        <div class="platform-card"><span class="badge bg-pink">Decisiones</span><i class="fas fa-chart-pie"></i><span class="name">Data & Analytics <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.8rem; margin:0; opacity: 1; color: var(--txt);"></i></span></div>
+        <div class="platform-card"><span class="badge bg-blue">Software & LLM</span><i class="fas fa-code"></i><span class="name">Desarrollo a Medida <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.8rem; margin:0; opacity: 1; color: var(--txt);"></i></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="benefit-section">
+    <div class="tag">El Impacto</div>
+    <h2>Potenciando tu Ventaja Competitiva</h2>
+    <div class="benefit-container">
+      <div class="benefit-tabs">
+        <ul id="benefitList">
+          <li class="active" data-idx="0">
+            <div class="title">Eficiencia Operativa <span>(1)</span></div>
+            <p class="desc">Reducimos costos y tiempos de ejecución mediante la automatización de procesos repetitivos, permitiendo a tu equipo enfocarse en tareas de alto valor.</p>
+          </li>
+          <li data-idx="1">
+            <div class="title">Decisiones Inteligentes <span>(2)</span></div>
+            <p class="desc">Transformamos tus datos aislados en insights accionables. Implementamos modelos predictivos que te ayudan a anticipar las necesidades del mercado.</p>
+          </li>
+          <li data-idx="2">
+            <div class="title">Innovación Continua <span>(3)</span></div>
+            <p class="desc">Te mantenemos a la vanguardia. Evaluamos e integramos las tecnologías emergentes más relevantes para tu sector antes que tu competencia.</p>
+          </li>
+          <li data-idx="3">
+            <div class="title">Escalabilidad Segura <span>(4)</span></div>
+            <p class="desc">Diseñamos arquitecturas en la nube y soluciones de IA robustas, priorizando siempre la ciberseguridad y la privacidad de tu información corporativa.</p>
+          </li>
+        </ul>
+      </div>
+      <div class="benefit-img"><img id="benefitImg" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=960&q=80" alt="Dashboard corporativo"></div>
+    </div>
+  </section>
+
+  <section class="articles-section">
+    <div class="tag">Recursos y Casos de Éxito</div>
+    <div class="articles-header">
+      <h2>Últimos Artículos</h2>
+      <a href="#" class="view-all">Ver Todos <span class="arrow"><i class="fas fa-arrow-up-right-from-square"></i></span></a>
+    </div>
+    <div class="article-grid">
+      <article class="article-card">
+        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=960&q=80" alt="Cybersecurity">
+        <h3 class="article-title">Implementando Modelos de Lenguaje (LLMs) corporativos de forma segura</h3>
+        <p class="article-date">12.02.2026</p>
+      </article>
+      <article class="article-card">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=960&q=80" alt="Team working">
+        <h3 class="article-title">De los datos a la acción: Estrategias de BI para líderes del mañana</h3>
+        <p class="article-date">05.02.2026</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <h2>Descubre cómo NexusAI puede acelerar la evolución tecnológica de tu empresa.</h2>
+    <a href="#" class="cta-btn-main">Agendar Asesoría Gratuita <span class="arrow"><i class="fas fa-arrow-up-right-from-square"></i></span></a>
+  </section>
+
+  <div class="social">
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    <a href="#"><i class="fab fa-x-twitter"></i></a>
+  </div>
+  <a href="#" class="request-btn">Solicitar Demo <span class="arrow"><i class="fas fa-arrow-up-right-from-square"></i></span></a>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <span style="font-size: 1.5rem; color: var(--accent);"><i class="fas fa-brain"></i></span>
+          NexusAI
+        </div>
+      </div>
+      <nav class="footer-links">
+        <a href="#">Inicio</a><a href="#">Servicios</a><a href="#">Nosotros</a><a href="#">Casos de Éxito</a><a href="#">Blog</a><a href="#">Contacto</a>
+      </nav>
+      <div class="footer-cta">Contáctanos para explorar alianzas, agendar una auditoría o simplemente para saludar. <a href="#">Hablemos</a></div>
+      <div class="footer-info">
+        <div><h5>Oficina Central</h5><p>Av. Apoquindo 4501<br>Las Condes, Santiago</p></div>
+        <div><h5>Contacto</h5><p>hola@nexusai.com</p></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+      <p>©2026 NexusAI. Todos los derechos reservados.</p>
+      <div class="footer-meta"><a href="#">Términos y Condiciones</a><a href="#">Política de Privacidad</a></div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
