@@ -50,7 +50,11 @@ if (tabs.length && benefitImg) {
     }));
 }
 
-/* Blog content */
+/* Blog content
+ * EDITA AQUÍ el contenido de cada post para la página de detalle:
+ * - clave: slug usado en la URL ?id=slug
+ * - title/date/author/readTime/image/imageAlt/intro/sections
+ */
 const blogPosts = {
     'llm-seguro': {
         title: 'Implementando Modelos de Lenguaje (LLMs) corporativos de forma segura',
@@ -161,7 +165,6 @@ if (articleContainer) {
     `).join('');
 
     articleContainer.innerHTML = `
-        <a href="blog.html" class="view-all">Volver al Blog <span class="arrow"><i class="fas fa-arrow-up-right-from-square"></i></span></a>
         <div class="tag">Artículo</div>
         <h1>${post.title}</h1>
         <div class="article-meta"><span>${post.date}</span><span>${post.author}</span><span>${post.readTime}</span></div>
