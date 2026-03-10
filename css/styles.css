@@ -5,6 +5,7 @@
   --txt:#fff;
   --nav-h:70px;
   --dot:8px;
+  --brand-orange:#ff8a00;
   font-size:16px;
 }
 
@@ -183,6 +184,11 @@ h1{font-size:clamp(2rem,6vw,4.5rem);font-weight:600;max-width:900px;line-height:
 .request-btn:hover .arrow{transform:translateX(4px)}
 .cursor-dot{position:fixed;width:var(--dot);height:var(--dot);border-radius:50%;background:var(--accent);pointer-events:none;mix-blend-mode:screen;transform:translate(-50%,-50%);z-index:10000}
 body.menu-open .social,body.menu-open .request-btn{opacity:0;pointer-events:none}
+
+@keyframes brand-circle-slide{0%{transform:translateX(0)}65%{transform:translateX(8px)}100%{transform:translateX(6px)}}
+:is(.intro-btn,.view-all,.cta-btn-main,.request-btn,.platforms-btn,.cta-btn) .arrow{transition:background .3s,color .3s,border-color .3s,transform .3s,box-shadow .3s;will-change:transform}
+:is(.intro-btn,.view-all,.cta-btn-main,.request-btn,.platforms-btn,.cta-btn):hover .arrow{animation:brand-circle-slide .45s ease forwards;background:var(--brand-orange);color:#fff;box-shadow:0 0 0 3px rgba(255,138,0,.2)}
+:is(.platforms-btn,.cta-btn):hover .arrow{border-color:var(--brand-orange)}
 
 /* ===== MOBILE QUICK ===== */
 @media(max-width:768px){header{padding:0 1rem}.social{display:none}.cards{max-width:100%}}
