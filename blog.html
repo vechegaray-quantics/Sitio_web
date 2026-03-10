@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Quantics – Artículos y Noticias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="img\2.png" alt="Quantics Logo" class="logo-img" style="height:180px;">
+      </a>
+    </div>
+    <input type="checkbox" id="menuToggle" hidden>
+    <label for="menuToggle" class="hamburger" aria-label="Abrir menú"><span class="bar1"></span><span class="bar2"></span><span class="bar3"></span></label>
+  </header>
+
+  <nav id="sideMenu" aria-label="Menú principal">
+    <button class="close-btn" aria-label="Close menu">&times;</button>
+    <div class="menu-inner">
+      <div class="menu-nav">
+        <ul>
+          <li><a href="index.html">Inicio</a></li><li><a href="#">Servicios</a></li>
+          <li><a href="#">Nosotros</a></li><li><a href="#">Equipo</a></li>
+          <li><a href="blog.html">Blog</a></li><li><a href="#">Contacto</a></li>
+        </ul>
+        <div class="menu-social">
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="extra-section">
+        <div class="post-card">
+          <h4>Última Publicación</h4>
+          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=960&q=80" alt="Seguridad en IA corporativa">
+          <p class="title">Implementando Modelos de Lenguaje (LLMs) corporativos de forma segura</p>
+          <div class="meta"><span>Blog Quantics</span><span>12.02.2026</span></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="intro-section page-intro">
+      <div class="tag">Blog Quantics</div>
+      <h1>Artículos y noticias para acelerar tu estrategia de IA</h1>
+      <p>Explora aprendizajes aplicados, tendencias de innovación empresarial y casos reales para convertir datos, automatización e inteligencia artificial en resultados concretos.</p>
+    </section>
+
+    <section class="articles-section" aria-label="Listado de artículos">
+      <div class="articles-header">
+        <h2>Publicaciones recientes</h2>
+      </div>
+      <div class="article-grid">
+        <article class="article-card">
+          <a href="blog-detalle.html?id=llm-seguro"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=960&q=80" alt="Candado holográfico sobre circuito digital"></a>
+          <h3 class="article-title"><a href="blog-detalle.html?id=llm-seguro">Implementando Modelos de Lenguaje (LLMs) corporativos de forma segura</a></h3>
+          <p class="article-date">12.02.2026</p>
+        </article>
+        <article class="article-card">
+          <a href="blog-detalle.html?id=bi-accion"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=960&q=80" alt="Equipo revisando analítica de negocio"></a>
+          <h3 class="article-title"><a href="blog-detalle.html?id=bi-accion">De los datos a la acción: Estrategias de BI para líderes del mañana</a></h3>
+          <p class="article-date">05.02.2026</p>
+        </article>
+        <article class="article-card">
+          <a href="blog-detalle.html?id=agentes-rpa"><img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=960&q=80" alt="Brazo robótico en línea de operación"></a>
+          <h3 class="article-title"><a href="blog-detalle.html?id=agentes-rpa">Agentes IA + RPA: el nuevo estándar para operaciones 24/7</a></h3>
+          <p class="article-date">29.01.2026</p>
+        </article>
+        <article class="article-card">
+          <a href="blog-detalle.html?id=ia-gobierno"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=960&q=80" alt="Mesa de directorio con documentos"></a>
+          <h3 class="article-title"><a href="blog-detalle.html?id=ia-gobierno">Gobierno de IA: 6 prácticas para escalar sin perder control</a></h3>
+          <p class="article-date">22.01.2026</p>
+        </article>
+        <article class="article-card">
+          <a href="blog-detalle.html?id=costo-cloud"><img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=960&q=80" alt="Ingeniero optimizando arquitectura cloud"></a>
+          <h3 class="article-title"><a href="blog-detalle.html?id=costo-cloud">FinOps inteligente: cómo reducir un 30% del gasto cloud con analítica predictiva</a></h3>
+          <p class="article-date">15.01.2026</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <a href="index.html">
+            <img src="img\2.png" alt="Quantics Logo" class="logo-img" style="height:180px;">
+          </a>
+        </div>
+      </div>
+      <nav class="footer-links" aria-label="Enlaces de pie de página">
+        <a href="index.html">Inicio</a><a href="#">Servicios</a><a href="#">Nosotros</a><a href="blog.html">Blog</a><a href="#">Contacto</a>
+      </nav>
+      <div class="footer-info">
+        <div><h5>Oficina Central</h5><p>El Golf 99<br>Las Condes, Santiago</p></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-social">
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+      <p>©2026 Quantics. Todos los derechos reservados.</p>
+      <div class="footer-meta"><a href="#">Términos y Condiciones</a><a href="#">Política de Privacidad</a></div>
+    </div>
+  </footer>
+
+  <div class="social">
+    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+  </div>
+  <a href="#" class="request-btn">Contacto<span class="arrow"><i class="fas fa-arrow-up-right-from-square"></i></span></a>
+  <div class="cursor-dot"></div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
