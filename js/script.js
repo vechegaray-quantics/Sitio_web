@@ -301,3 +301,104 @@ if (canvas) {
     setup();
     draw();
 }
+
+/* Contact flow demo */
+const contactDemo = document.querySelector('.contact-demo');
+if (contactDemo) {
+    const stages = Array.from(contactDemo.querySelectorAll('.contact-stage'));
+    const dots = Array.from(contactDemo.querySelectorAll('.flow-dot'));
+    const progress = contactDemo.querySelector('[data-progress]');
+    const form = document.getElementById('contactDemoForm');
+    const chatWindow = document.getElementById('demoChatWindow');
+    const chatForm = document.getElementById('demoChatForm');
+    const chatInput = document.getElementById('demoChatInput');
+    const finishDemoBtn = document.getElementById('finishDemoBtn');
+    const quickPrompts = Array.from(document.querySelectorAll('.prompt-chip'));
+
+    const setStep = (step) => {
+        contactDemo.dataset.step = String(step);
+
+        stages.forEach(stage => {
+            stage.classList.toggle('is-visible', Number(stage.dataset.stage) === step);
+        });
+
+        dots.forEach((dot, idx) => {
+            const dotStep = idx + 1;
+            dot.classList.toggle('active', dotStep === step);
+            dot.classList.toggle('done', dotStep < step);
+        });
+
+        if (progress) progress.style.setProperty('--progress', `${((step - 1) / 3) * 100}%`);
+    };
+
+    const appendMessage = (text, role = 'llm') => {
+        if (!chatWindow) return;
+
+        const row = document.createElement('div');
+        row.className = `chat-row ${role}`;
+
+        const meta = document.createElement('div');
+        const time = new Date().toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
+        meta.className = 'chat-meta';
+        meta.textContent = `${role === 'llm' ? 'Assistant' : 'Tú'} · ${time}`;
+
+        const bubble = document.createElement('div');
+        bubble.className = `chat-bubble ${role === 'llm' ? 'llm' : 'user'}`;
+        bubble.textContent = text;
+
+        row.appendChild(meta);
+        row.appendChild(bubble);
+        chatWindow.appendChild(row);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    };
+
+    const showTyping = () => {
+        if (!chatWindow) return null;
+        const row = document.createElement('div');
+        row.className = 'chat-row llm';
+        row.innerHTML = '<div class="chat-meta">Assistant · escribiendo…</div><div class="typing-indicator"><span></span><span></span><span></span></div>';
+        chatWindow.appendChild(row);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+        return row;
+    };
+
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!form.reportValidity()) return;
+            setStep(2);
+            window.setTimeout(() => setStep(3), 2600);
+        });
+    }
+
+    if (chatForm && chatInput) {
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            appendMessage(text, 'user');
+            chatInput.value = '';
+
+            const typingRow = showTyping();
+            window.setTimeout(() => {
+                typingRow?.remove();
+                appendMessage('Perfecto. ¿Ese flujo hoy depende de correo, ERP o planillas? Con ese dato priorizo el caso.', 'llm');
+            }, 900);
+        });
+    }
+
+    quickPrompts.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (!chatInput) return;
+            chatInput.value = btn.dataset.prompt || '';
+            chatInput.focus();
+        });
+    });
+
+    if (finishDemoBtn) {
+        finishDemoBtn.addEventListener('click', () => setStep(4));
+    }
+
+    setStep(1);
+}

@@ -206,3 +206,93 @@ body.menu-open .social,body.menu-open .request-btn{opacity:0;pointer-events:none
 .article-content h2{font-size:clamp(1.5rem,3vw,2.2rem);margin-top:2rem}
 .article-content ul{margin:1.2rem 0 0 1.3rem;line-height:1.6}
 @media(max-width:768px){.article-cover{height:280px}}
+
+/* ===== CONTACT PAGE ===== */
+.contact-hero{padding:calc(var(--nav-h) + 5rem) clamp(1rem,5vw,6rem) 3rem;background:linear-gradient(180deg,#0b1725 0%,#102439 100%)}
+.contact-hero .tag{display:flex;align-items:center;gap:.5rem;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.25rem;color:rgba(255,255,255,.68)}
+.contact-hero .tag::before{content:"";width:6px;height:6px;border-radius:50%;background:#6e859d}
+.contact-hero h1{max-width:960px;margin-bottom:1.25rem;font-weight:600;line-height:1.2}
+.contact-hero p{max-width:840px;font-size:1.03rem;line-height:1.65;color:rgba(255,255,255,.76)}
+
+.contact-flow-section{padding:0 clamp(1rem,5vw,6rem) 6rem;background:#0d1b2a}
+.flow-wrap{max-width:1060px;margin:0 auto}
+.flow-steps{position:relative;display:flex;justify-content:space-between;align-items:center;margin:0 0 1rem;padding:0 .25rem}
+.flow-dot{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:.78rem;font-weight:600;background:#1b2837;border:1px solid rgba(255,255,255,.15);color:#b6c2ce;z-index:2;transition:.25s}
+.flow-dot.active,.flow-dot.done{background:#27445f;border-color:#5f7f9c;color:#e4edf5}
+.flow-progress{position:absolute;left:12px;right:12px;top:50%;height:2px;background:rgba(255,255,255,.12);transform:translateY(-50%)}
+.flow-progress::after{content:"";position:absolute;left:0;top:0;height:100%;background:#5f7f9c;width:var(--progress,0%);transition:width .35s ease}
+
+.contact-sequence{position:relative;min-height:560px}
+.contact-stage{position:absolute;inset:0;background:#101e2d;border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:1.5rem;overflow:hidden;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s ease,transform .3s ease}
+.contact-stage.is-visible{opacity:1;transform:translateY(0);pointer-events:auto}
+
+.panel-head{display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.1rem}
+.panel-head h2{font-size:1.15rem;font-weight:600;margin:0}
+.stage-pill{width:max-content;padding:.3rem .7rem;border-radius:999px;font-size:.72rem;background:rgba(95,127,156,.22);border:1px solid rgba(147,174,198,.45);color:#dbe7f1}
+.demo-note{margin-top:.9rem;color:rgba(255,255,255,.62);font-size:.86rem}
+
+.contact-form-mock{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.contact-form-mock label{display:flex;flex-direction:column;gap:.38rem;font-size:.82rem;color:rgba(255,255,255,.74)}
+.contact-form-mock label:last-of-type{grid-column:1/-1}
+.contact-form-mock input,.contact-form-mock select,.chat-composer input{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04);border-radius:8px;padding:.72rem;color:#ebeff3;font-family:inherit}
+.contact-form-mock input:focus,.contact-form-mock select:focus,.chat-composer input:focus{outline:none;border-color:#85a2bc;background:rgba(255,255,255,.07)}
+.contact-form-mock input::placeholder,.chat-composer input::placeholder{color:rgba(233,237,241,.45)}
+
+.demo-btn{border:1px solid #6887a3;background:#355672;color:#edf3f9;padding:.72rem 1rem;border-radius:8px;font-weight:600;cursor:pointer;transition:.2s}
+.demo-btn:hover{background:#446786}
+.contact-form-mock .demo-btn{grid-column:1/-1;margin-top:.2rem}
+.demo-btn-secondary{margin-top:1rem;background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.24);color:#edf3f7}
+.demo-btn-secondary:hover{background:rgba(255,255,255,.14)}
+
+.scan-animation{height:145px;display:flex;align-items:center;justify-content:center;position:relative}
+.scan-ring{position:absolute;width:56px;height:56px;border:1px solid rgba(127,154,179,.55);border-radius:50%;animation:scanPulse 2.3s ease-out infinite}
+.scan-ring:nth-child(2){animation-delay:.32s}
+.scan-ring:nth-child(3){animation-delay:.65s}
+.scan-core{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:rgba(95,127,156,.22);border:1px solid rgba(127,154,179,.5);font-size:1rem;color:#d2deea}
+@keyframes scanPulse{0%{transform:scale(.9);opacity:.75}100%{transform:scale(2.6);opacity:0}}
+.scan-status{list-style:none;display:grid;gap:.65rem;font-size:.9rem;color:rgba(255,255,255,.76)}
+.status-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:.45rem;background:rgba(255,255,255,.32)}
+.status-dot.active{background:#9bb6cd}
+
+.chat-shell{display:grid;grid-template-columns:260px 1fr;gap:1rem;min-height:360px}
+.chat-side{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:1rem}
+.chat-side h3{font-size:.9rem;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.64);margin-bottom:.75rem}
+.chat-side ul{list-style:none;display:grid;gap:.6rem;font-size:.88rem;color:rgba(255,255,255,.78);margin-bottom:1rem}
+.chat-side p{font-size:.82rem;line-height:1.6;color:rgba(255,255,255,.56)}
+
+.chat-main{display:flex;flex-direction:column;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.12);border-radius:8px;overflow:hidden}
+.chat-header{display:flex;justify-content:space-between;align-items:flex-start;padding:.85rem 1rem;border-bottom:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.02)}
+.chat-header h3{font-size:.96rem;margin:0 0 .2rem}
+.chat-header p{font-size:.78rem;color:rgba(255,255,255,.58)}
+.chat-badge{font-size:.72rem;background:rgba(76,150,114,.24);border:1px solid rgba(126,184,152,.55);padding:.25rem .55rem;border-radius:999px;color:#d2ebdf}
+
+.chat-mock{display:flex;flex-direction:column;gap:.75rem;max-height:230px;overflow:auto;padding:1rem;background:#0d1b28}
+.chat-row{display:flex;flex-direction:column;gap:.2rem}
+.chat-meta{font-size:.72rem;color:rgba(255,255,255,.48)}
+.chat-row.user .chat-meta{text-align:right}
+.chat-bubble{max-width:88%;padding:.68rem .82rem;border-radius:8px;line-height:1.45;font-size:.9rem}
+.chat-bubble.llm{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14)}
+.chat-row.user{align-items:flex-end}
+.chat-row.user .chat-bubble{background:rgba(95,127,156,.27);border:1px solid rgba(127,154,179,.46)}
+.typing-indicator{display:flex;gap:.28rem;align-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);padding:.55rem .65rem;border-radius:8px;width:max-content}
+.typing-indicator span{width:5px;height:5px;border-radius:50%;background:#b6c7d7;animation:typingDot 1s infinite}
+.typing-indicator span:nth-child(2){animation-delay:.15s}
+.typing-indicator span:nth-child(3){animation-delay:.3s}
+@keyframes typingDot{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-2px)}}
+
+.quick-prompts{display:flex;flex-wrap:wrap;gap:.5rem;padding:.7rem 1rem;border-top:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.01)}
+.prompt-chip{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);color:#dde7f0;padding:.35rem .65rem;border-radius:999px;font-size:.75rem;cursor:pointer}
+.prompt-chip:hover{background:rgba(255,255,255,.12)}
+
+.chat-composer{display:grid;grid-template-columns:1fr auto;gap:.6rem;padding:.85rem 1rem;border-top:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.02)}
+
+.contact-stage[data-stage="4"] p{max-width:580px;line-height:1.65;color:rgba(255,255,255,.8)}
+.sent-animation{height:140px;display:grid;place-items:center;position:relative}
+.check-wrapper{width:58px;height:58px;border-radius:50%;background:rgba(107,154,128,.2);display:grid;place-items:center;border:1px solid rgba(126,184,152,.55);color:#c4ebd4;font-size:1.2rem;z-index:2}
+.pulse{position:absolute;width:58px;height:58px;border-radius:50%;border:1px solid rgba(126,184,152,.45);animation:sentPulse 2.2s ease-out infinite}
+.pulse-2{animation-delay:.7s}
+@keyframes sentPulse{0%{transform:scale(1);opacity:.65}100%{transform:scale(2.4);opacity:0}}
+
+@media(max-width:980px){.contact-sequence{min-height:680px}.chat-shell{grid-template-columns:1fr}}
+@media(max-width:920px){.contact-sequence{min-height:760px}.contact-form-mock{grid-template-columns:1fr}}
+@media(max-width:640px){.flow-dot{width:30px;height:30px;font-size:.74rem}.contact-sequence{min-height:820px}.chat-composer{grid-template-columns:1fr}.chat-composer .demo-btn{width:100%}}
