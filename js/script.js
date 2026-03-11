@@ -301,3 +301,73 @@ if (canvas) {
     setup();
     draw();
 }
+
+/* Contact flow demo */
+const contactDemo = document.querySelector('.contact-demo');
+if (contactDemo) {
+    const stages = Array.from(contactDemo.querySelectorAll('.contact-stage'));
+    const dots = Array.from(contactDemo.querySelectorAll('.flow-dot'));
+    const progress = contactDemo.querySelector('[data-progress]');
+    const form = document.getElementById('contactDemoForm');
+    const chatWindow = document.getElementById('demoChatWindow');
+    const chatForm = document.getElementById('demoChatForm');
+    const chatInput = document.getElementById('demoChatInput');
+    const finishDemoBtn = document.getElementById('finishDemoBtn');
+
+    const setStep = (step) => {
+        contactDemo.dataset.step = String(step);
+
+        stages.forEach(stage => {
+            stage.classList.toggle('is-visible', Number(stage.dataset.stage) === step);
+        });
+
+        dots.forEach((dot, idx) => {
+            const dotStep = idx + 1;
+            dot.classList.toggle('active', dotStep === step);
+            dot.classList.toggle('done', dotStep < step);
+        });
+
+        if (progress) progress.style.setProperty('--progress', `${((step - 1) / 3) * 100}%`);
+    };
+
+    const appendMessage = (text, role = 'llm') => {
+        if (!chatWindow) return;
+        const bubble = document.createElement('div');
+        bubble.className = `chat-bubble ${role}`;
+        bubble.textContent = text;
+        chatWindow.appendChild(bubble);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    };
+
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!form.reportValidity()) return;
+            setStep(2);
+            window.setTimeout(() => {
+                setStep(3);
+            }, 2600);
+        });
+    }
+
+    if (chatForm && chatInput) {
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = chatInput.value.trim();
+            if (!text) return;
+            appendMessage(text, 'user');
+            chatInput.value = '';
+            window.setTimeout(() => {
+                appendMessage('Gracias, eso ayuda mucho. ¿Cuál es el volumen mensual aproximado de ese flujo?', 'llm');
+            }, 900);
+        });
+    }
+
+    if (finishDemoBtn) {
+        finishDemoBtn.addEventListener('click', () => {
+            setStep(4);
+        });
+    }
+
+    setStep(1);
+}

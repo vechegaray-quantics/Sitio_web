@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto Inteligente – Quantics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="img\2.png" alt="Quantics Logo" class="logo-img" style="height:180px;">
+      </a>
+    </div>
+    <input type="checkbox" id="menuToggle" hidden>
+    <label for="menuToggle" class="hamburger" aria-label="Abrir menú"><span class="bar1"></span><span class="bar2"></span><span class="bar3"></span></label>
+  </header>
+
+  <nav id="sideMenu" aria-label="Menú principal">
+    <button class="close-btn" aria-label="Close menu">&times;</button>
+    <div class="menu-inner">
+      <div class="menu-nav">
+        <ul>
+          <li><a href="index.html">Inicio</a></li><li><a href="#">Servicios</a></li>
+          <li><a href="#">Nosotros</a></li><li><a href="blog.html">Blog</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+        <div class="menu-social">
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="extra-section">
+        <div class="post-card">
+          <h4>Flujo de contacto IA</h4>
+          <img src="https://images.unsplash.com/photo-1677442135722-5f7f1d4c4b2c?auto=format&fit=crop&w=960&q=80" alt="Interfaz conversacional IA">
+          <p class="title">Cuéntanos tu desafío y nuestro LLM levantará contexto antes de agendar la reunión.</p>
+          <div class="meta"><span>Diagnóstico inicial</span><span>Tiempo aprox. 3 min</span></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="contact-hero">
+      <div class="tag">Contacto inteligente</div>
+      <h1>Un proceso de diagnóstico corporativo asistido por IA, previo a la reunión inicial.</h1>
+      <p>Comparte información clave de tu empresa y continúa con una conversación estructurada para priorizar oportunidades de impacto.</p>
+    </section>
+
+    <section class="contact-flow-section contact-demo" data-step="1">
+      <div class="flow-wrap">
+        <div class="flow-steps" aria-label="Progreso del flujo">
+          <span class="flow-dot active" data-dot="1">1</span>
+          <span class="flow-dot" data-dot="2">2</span>
+          <span class="flow-dot" data-dot="3">3</span>
+          <span class="flow-dot" data-dot="4">4</span>
+          <span class="flow-progress" data-progress></span>
+        </div>
+
+        <div class="contact-sequence">
+          <article class="contact-panel contact-stage is-visible" data-stage="1">
+            <div class="panel-head">
+              <span class="stage-pill">Paso 1</span>
+              <h2>Datos iniciales</h2>
+            </div>
+            <form class="contact-form-mock" id="contactDemoForm" aria-label="Formulario de contacto inicial">
+              <label>Nombre y apellido
+                <input type="text" placeholder="Ej: María López" required />
+              </label>
+              <label>Empresa
+                <input type="text" placeholder="Ej: Andes Logistics" required />
+              </label>
+              <label>Sitio web
+                <input type="url" placeholder="https://tuempresa.com" required />
+              </label>
+              <label>Correo corporativo
+                <input type="email" placeholder="nombre@empresa.com" required />
+              </label>
+              <label>Objetivo principal
+                <select required>
+                  <option value="">Selecciona una opción</option>
+                  <option>Optimizar operación</option>
+                  <option>Automatizar procesos</option>
+                  <option>Implementar analítica avanzada</option>
+                </select>
+              </label>
+              <button type="submit" class="demo-btn">Continuar con diagnóstico</button>
+            </form>
+          </article>
+
+          <article class="contact-panel contact-stage" data-stage="2">
+            <div class="panel-head">
+              <span class="stage-pill">Paso 2</span>
+              <h2>El LLM está investigando tu empresa</h2>
+            </div>
+            <div class="scan-animation" aria-hidden="true">
+              <div class="scan-ring"></div>
+              <div class="scan-ring"></div>
+              <div class="scan-ring"></div>
+              <div class="scan-core"><i class="fas fa-sparkles"></i></div>
+            </div>
+            <ul class="scan-status">
+              <li><span class="status-dot active"></span>Analizando sitio web y propuesta de valor</li>
+              <li><span class="status-dot active"></span>Identificando oportunidades de automatización</li>
+              <li><span class="status-dot active"></span>Preparando preguntas para diagnóstico</li>
+            </ul>
+            <p class="demo-note">Simulación de carga: al finalizar se abrirá el chat automáticamente.</p>
+          </article>
+
+          <article class="contact-panel contact-stage" data-stage="3">
+            <div class="panel-head">
+              <span class="stage-pill">Paso 3</span>
+              <h2>Chat de diagnóstico</h2>
+            </div>
+            <div class="chat-mock" id="demoChatWindow">
+              <div class="chat-bubble llm">¡Hola! Ya tengo contexto preliminar de tu empresa. ¿Cuál es hoy tu mayor cuello de botella?</div>
+            </div>
+            <form class="chat-composer" id="demoChatForm">
+              <input type="text" id="demoChatInput" placeholder="Escribe tu respuesta..." required>
+              <button type="submit" class="demo-btn">Enviar</button>
+            </form>
+            <button type="button" class="demo-btn demo-btn-secondary" id="finishDemoBtn">Finalizar diagnóstico y enviar</button>
+          </article>
+
+          <article class="contact-panel contact-stage" data-stage="4">
+            <div class="panel-head">
+              <span class="stage-pill">Paso 4</span>
+              <h2>Formulario enviado</h2>
+            </div>
+            <div class="sent-animation" aria-hidden="true">
+              <div class="check-wrapper"><i class="fas fa-check"></i></div>
+              <div class="pulse pulse-1"></div>
+              <div class="pulse pulse-2"></div>
+            </div>
+            <p>Gracias. Tu briefing fue enviado correctamente. Un especialista de Quantics te contactará con una propuesta ajustada a tu caso.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <a href="index.html">
+            <img src="img\2.png" alt="Quantics Logo" class="logo-img" style="height:180px;">
+          </a>
+        </div>
+      </div>
+      <nav class="footer-links" aria-label="Enlaces de pie de página">
+        <a href="index.html">Inicio</a><a href="#">Servicios</a><a href="#">Nosotros</a><a href="blog.html">Blog</a><a href="contacto.html">Contacto</a>
+      </nav>
+      <div class="footer-info">
+        <div><h5>Oficina Central</h5><p>El Golf 99<br>Las Condes, Santiago</p></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-social">
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+      <p>©2026 Quantics. Todos los derechos reservados.</p>
+      <div class="footer-meta"><a href="#">Términos y Condiciones</a><a href="#">Política de Privacidad</a></div>
+    </div>
+  </footer>
+
+  <div class="social">
+    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+  </div>
+  <a href="contacto.html" class="request-btn">Contacto<span class="arrow"><i class="fas fa-arrow-up-right-from-square"></i></span></a>
+  <div class="cursor-dot"></div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
