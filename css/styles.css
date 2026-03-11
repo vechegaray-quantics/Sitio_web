@@ -128,8 +128,7 @@ h1{font-size:clamp(2rem,6vw,4.5rem);font-weight:600;max-width:900px;line-height:
 .benefit-tabs li:not(.active){color:rgba(0,0,0,.45)}
 .benefit-img{flex:1 1 380px;display:flex;align-items:center;justify-content:center}
 .benefit-img img{width:100%;max-width:560px;height:360px;object-fit:cover;border-radius:6px;border:1px solid #e2e6ea}
-@media(max-width:768px){.benefit-container{flex-direction:column}.benefit-tabs{max-width:none}.platforms-wrapper{flex-direction:column}.platforms-text{max-width:none}}
-
+@media(max-width:768px){.benefit-container{flex-direction:column}.benefit-tabs{max-width:none}.platforms-wrapper{flex-direction:column;flex-wrap:nowrap}.platforms-text{max-width:none}}
 /* ===== ARTICLES ===== */
 .articles-section{background:#fff;color:#0d1b2a;padding:6rem clamp(1rem,5vw,6rem)}
 .articles-section .tag{display:flex;align-items:center;gap:.5rem;font-size:.875rem;font-weight:500;margin-bottom:2rem}
