@@ -49,53 +49,55 @@
   <main>
     <section class="contact-hero">
       <div class="tag">Contacto inteligente</div>
-      <h1>Inicia con datos básicos y continúa con un diagnóstico guiado por IA.</h1>
-      <p>Nuestro asistente conversacional construye el contexto de tu empresa antes de que hables con el equipo consultor, para aprovechar mejor cada minuto.</p>
+      <h1>Flujo guiado por IA para entender tu caso antes de la primera reunión.</h1>
+      <p>Este front-end simula la experiencia final: tomamos tus datos, investigamos contexto público, abrimos un chat de diagnóstico y confirmamos el envío.</p>
     </section>
 
-    <section class="contact-flow-section">
+    <section class="contact-flow-section contact-demo" data-step="1">
       <div class="flow-wrap">
-        <div class="flow-steps" aria-hidden="true">
-          <span class="flow-dot dot-1">1</span>
-          <span class="flow-dot dot-2">2</span>
-          <span class="flow-dot dot-3">3</span>
-          <span class="flow-dot dot-4">4</span>
-          <span class="flow-progress"></span>
+        <div class="flow-steps" aria-label="Progreso del flujo">
+          <span class="flow-dot active" data-dot="1">1</span>
+          <span class="flow-dot" data-dot="2">2</span>
+          <span class="flow-dot" data-dot="3">3</span>
+          <span class="flow-dot" data-dot="4">4</span>
+          <span class="flow-progress" data-progress></span>
         </div>
 
-        <div class="contact-sequence" aria-label="Secuencia visual del flujo de contacto">
-          <article class="contact-panel sequence-stage stage-1">
+        <div class="contact-sequence">
+          <article class="contact-panel contact-stage is-visible" data-stage="1">
             <div class="panel-head">
               <span class="stage-pill">Paso 1</span>
               <h2>Datos iniciales</h2>
             </div>
-            <form class="contact-form-mock" aria-label="Formulario de contacto inicial">
+            <form class="contact-form-mock" id="contactDemoForm" aria-label="Formulario de contacto inicial">
               <label>Nombre y apellido
-                <input type="text" placeholder="Ej: María López" />
+                <input type="text" placeholder="Ej: María López" required />
               </label>
               <label>Empresa
-                <input type="text" placeholder="Ej: Andes Logistics" />
+                <input type="text" placeholder="Ej: Andes Logistics" required />
               </label>
               <label>Sitio web
-                <input type="url" placeholder="https://tuempresa.com" />
+                <input type="url" placeholder="https://tuempresa.com" required />
               </label>
               <label>Correo corporativo
-                <input type="email" placeholder="nombre@empresa.com" />
+                <input type="email" placeholder="nombre@empresa.com" required />
               </label>
               <label>Objetivo principal
-                <select>
+                <select required>
+                  <option value="">Selecciona una opción</option>
                   <option>Optimizar operación</option>
                   <option>Automatizar procesos</option>
                   <option>Implementar analítica avanzada</option>
                 </select>
               </label>
+              <button type="submit" class="demo-btn">Continuar con diagnóstico IA</button>
             </form>
           </article>
 
-          <article class="contact-panel sequence-stage stage-2">
+          <article class="contact-panel contact-stage" data-stage="2">
             <div class="panel-head">
               <span class="stage-pill">Paso 2</span>
-              <h2>El LLM investiga tu empresa</h2>
+              <h2>El LLM está investigando tu empresa</h2>
             </div>
             <div class="scan-animation" aria-hidden="true">
               <div class="scan-ring"></div>
@@ -105,34 +107,38 @@
             </div>
             <ul class="scan-status">
               <li><span class="status-dot active"></span>Analizando sitio web y propuesta de valor</li>
-              <li><span class="status-dot"></span>Identificando oportunidades de automatización</li>
-              <li><span class="status-dot"></span>Preparando preguntas para diagnóstico</li>
+              <li><span class="status-dot active"></span>Identificando oportunidades de automatización</li>
+              <li><span class="status-dot active"></span>Preparando preguntas para diagnóstico</li>
             </ul>
+            <p class="demo-note">Simulación de carga: al finalizar se abrirá el chat automáticamente.</p>
           </article>
 
-          <article class="contact-panel sequence-stage stage-3">
+          <article class="contact-panel contact-stage" data-stage="3">
             <div class="panel-head">
               <span class="stage-pill">Paso 3</span>
               <h2>Chat de diagnóstico</h2>
             </div>
-            <div class="chat-mock">
-              <div class="chat-bubble llm">¡Gracias! Ya revisé información pública de tu empresa. ¿Cuál es el proceso que hoy te genera más fricción?</div>
-              <div class="chat-bubble user">Tenemos mucho retrabajo en la gestión de órdenes y aprobación interna.</div>
-              <div class="chat-bubble llm">Perfecto. ¿Ese flujo depende de correo, ERP o planillas? Con eso estimo impacto y prioridad.</div>
+            <div class="chat-mock" id="demoChatWindow">
+              <div class="chat-bubble llm">¡Hola! Ya tengo contexto preliminar de tu empresa. ¿Cuál es hoy tu mayor cuello de botella?</div>
             </div>
+            <form class="chat-composer" id="demoChatForm">
+              <input type="text" id="demoChatInput" placeholder="Escribe tu respuesta..." required>
+              <button type="submit" class="demo-btn">Enviar</button>
+            </form>
+            <button type="button" class="demo-btn demo-btn-secondary" id="finishDemoBtn">Finalizar diagnóstico y enviar</button>
           </article>
 
-          <article class="contact-panel sequence-stage stage-4">
+          <article class="contact-panel contact-stage" data-stage="4">
             <div class="panel-head">
               <span class="stage-pill">Paso 4</span>
-              <h2>Envío confirmado</h2>
+              <h2>Formulario enviado</h2>
             </div>
             <div class="sent-animation" aria-hidden="true">
               <div class="check-wrapper"><i class="fas fa-check"></i></div>
               <div class="pulse pulse-1"></div>
               <div class="pulse pulse-2"></div>
             </div>
-            <p>Tu diagnóstico fue enviado. Un especialista de Quantics continuará el proceso con una propuesta personalizada.</p>
+            <p>Gracias. Tu briefing fue enviado correctamente. Un especialista de Quantics te contactará con una propuesta ajustada a tu caso.</p>
           </article>
         </div>
       </div>
