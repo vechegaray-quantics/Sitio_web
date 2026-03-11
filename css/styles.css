@@ -206,3 +206,48 @@ body.menu-open .social,body.menu-open .request-btn{opacity:0;pointer-events:none
 .article-content h2{font-size:clamp(1.5rem,3vw,2.2rem);margin-top:2rem}
 .article-content ul{margin:1.2rem 0 0 1.3rem;line-height:1.6}
 @media(max-width:768px){.article-cover{height:280px}}
+
+/* ===== CONTACT PAGE ===== */
+.contact-hero{padding:calc(var(--nav-h) + 5rem) clamp(1rem,5vw,6rem) 3rem;background:linear-gradient(180deg,#0d1b2a 0%,#10253a 100%)}
+.contact-hero .tag{display:flex;align-items:center;gap:.5rem;font-size:.875rem;margin-bottom:1.5rem;color:rgba(255,255,255,.8)}
+.contact-hero .tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.contact-hero h1{max-width:900px;margin-bottom:1.5rem}
+.contact-hero p{max-width:780px;font-size:1.1rem;line-height:1.6;color:rgba(255,255,255,.8)}
+
+.contact-flow-section{padding:0 clamp(1rem,5vw,6rem) 6rem;background:#0d1b2a}
+.contact-flow-grid{display:grid;grid-template-columns:repeat(2,minmax(280px,1fr));gap:1.5rem}
+.contact-panel{background:var(--glass-bg);border:1px solid var(--glass-border);backdrop-filter:blur(12px);border-radius:12px;padding:1.5rem;position:relative;overflow:hidden}
+.contact-panel::after{content:"";position:absolute;inset:auto -30% -65% -30%;height:190px;background:radial-gradient(circle,rgba(0,180,216,.22),transparent 65%);pointer-events:none}
+.panel-head{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.25rem}
+.panel-head h2{font-size:1.2rem;font-weight:600;margin:0}
+.stage-pill{width:max-content;padding:.35rem .8rem;border-radius:999px;font-size:.75rem;background:rgba(0,180,216,.18);border:1px solid rgba(0,180,216,.4);color:#b7f3ff}
+
+.contact-form-mock{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.contact-form-mock label{display:flex;flex-direction:column;gap:.4rem;font-size:.85rem;color:rgba(255,255,255,.78)}
+.contact-form-mock label:last-child{grid-column:1/-1}
+.contact-form-mock input,.contact-form-mock select{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);border-radius:8px;padding:.75rem;color:#fff;font-family:inherit}
+.contact-form-mock input::placeholder{color:rgba(255,255,255,.55)}
+
+.scan-animation{height:160px;display:flex;align-items:center;justify-content:center;position:relative}
+.scan-ring{position:absolute;width:58px;height:58px;border:1px solid rgba(0,180,216,.7);border-radius:50%;animation:scanPulse 2.4s ease-out infinite}
+.scan-ring:nth-child(2){animation-delay:.4s}
+.scan-ring:nth-child(3){animation-delay:.8s}
+.scan-core{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:rgba(0,180,216,.18);border:1px solid rgba(0,180,216,.5);font-size:1.2rem;color:#7cecff}
+@keyframes scanPulse{0%{transform:scale(.9);opacity:.75}100%{transform:scale(3);opacity:0}}
+.scan-status{list-style:none;display:grid;gap:.75rem;font-size:.92rem;color:rgba(255,255,255,.82)}
+.status-dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:.45rem;background:rgba(255,255,255,.35)}
+.status-dot.active{background:var(--accent);box-shadow:0 0 0 5px rgba(0,180,216,.18)}
+
+.chat-mock{display:flex;flex-direction:column;gap:.75rem}
+.chat-bubble{max-width:90%;padding:.75rem .9rem;border-radius:10px;line-height:1.45;font-size:.92rem}
+.chat-bubble.llm{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18)}
+.chat-bubble.user{background:rgba(0,180,216,.25);border:1px solid rgba(0,180,216,.45);align-self:flex-end}
+
+.sent-stage p{max-width:460px;line-height:1.6;color:rgba(255,255,255,.84)}
+.sent-animation{height:150px;display:grid;place-items:center;position:relative}
+.check-wrapper{width:62px;height:62px;border-radius:50%;background:rgba(68,201,124,.2);display:grid;place-items:center;border:1px solid rgba(68,201,124,.55);color:#79f0aa;font-size:1.35rem;z-index:2}
+.pulse{position:absolute;width:62px;height:62px;border-radius:50%;border:1px solid rgba(68,201,124,.45);animation:sentPulse 2.2s ease-out infinite}
+.pulse-2{animation-delay:.7s}
+@keyframes sentPulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(2.8);opacity:0}}
+
+@media(max-width:920px){.contact-flow-grid{grid-template-columns:1fr}.contact-form-mock{grid-template-columns:1fr}}
