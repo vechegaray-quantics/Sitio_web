@@ -54,77 +54,87 @@
     </section>
 
     <section class="contact-flow-section">
-      <div class="contact-flow-grid">
-        <article class="contact-panel form-stage">
-          <div class="panel-head">
-            <span class="stage-pill">Paso 1</span>
-            <h2>Datos iniciales</h2>
-          </div>
-          <form class="contact-form-mock" aria-label="Formulario de contacto inicial">
-            <label>Nombre y apellido
-              <input type="text" placeholder="Ej: María López" />
-            </label>
-            <label>Empresa
-              <input type="text" placeholder="Ej: Andes Logistics" />
-            </label>
-            <label>Sitio web
-              <input type="url" placeholder="https://tuempresa.com" />
-            </label>
-            <label>Correo corporativo
-              <input type="email" placeholder="nombre@empresa.com" />
-            </label>
-            <label>Objetivo principal
-              <select>
-                <option>Optimizar operación</option>
-                <option>Automatizar procesos</option>
-                <option>Implementar analítica avanzada</option>
-              </select>
-            </label>
-          </form>
-        </article>
+      <div class="flow-wrap">
+        <div class="flow-steps" aria-hidden="true">
+          <span class="flow-dot dot-1">1</span>
+          <span class="flow-dot dot-2">2</span>
+          <span class="flow-dot dot-3">3</span>
+          <span class="flow-dot dot-4">4</span>
+          <span class="flow-progress"></span>
+        </div>
 
-        <article class="contact-panel loader-stage">
-          <div class="panel-head">
-            <span class="stage-pill">Paso 2</span>
-            <h2>El LLM investiga tu empresa</h2>
-          </div>
-          <div class="scan-animation" aria-hidden="true">
-            <div class="scan-ring"></div>
-            <div class="scan-ring"></div>
-            <div class="scan-ring"></div>
-            <div class="scan-core"><i class="fas fa-sparkles"></i></div>
-          </div>
-          <ul class="scan-status">
-            <li><span class="status-dot active"></span>Analizando sitio web y propuesta de valor</li>
-            <li><span class="status-dot"></span>Identificando oportunidades de automatización</li>
-            <li><span class="status-dot"></span>Preparando preguntas para diagnóstico</li>
-          </ul>
-        </article>
+        <div class="contact-sequence" aria-label="Secuencia visual del flujo de contacto">
+          <article class="contact-panel sequence-stage stage-1">
+            <div class="panel-head">
+              <span class="stage-pill">Paso 1</span>
+              <h2>Datos iniciales</h2>
+            </div>
+            <form class="contact-form-mock" aria-label="Formulario de contacto inicial">
+              <label>Nombre y apellido
+                <input type="text" placeholder="Ej: María López" />
+              </label>
+              <label>Empresa
+                <input type="text" placeholder="Ej: Andes Logistics" />
+              </label>
+              <label>Sitio web
+                <input type="url" placeholder="https://tuempresa.com" />
+              </label>
+              <label>Correo corporativo
+                <input type="email" placeholder="nombre@empresa.com" />
+              </label>
+              <label>Objetivo principal
+                <select>
+                  <option>Optimizar operación</option>
+                  <option>Automatizar procesos</option>
+                  <option>Implementar analítica avanzada</option>
+                </select>
+              </label>
+            </form>
+          </article>
 
-        <article class="contact-panel chat-stage">
-          <div class="panel-head">
-            <span class="stage-pill">Paso 3</span>
-            <h2>Chat de diagnóstico</h2>
-          </div>
-          <div class="chat-mock">
-            <div class="chat-bubble llm">¡Gracias! Ya revisé información pública de tu empresa. ¿Cuál es el proceso que hoy te genera más fricción?</div>
-            <div class="chat-bubble user">Tenemos mucho retrabajo en la gestión de órdenes y aprobación interna.</div>
-            <div class="chat-bubble llm">Perfecto. ¿Ese flujo depende de correo, ERP o planillas? Con eso estimo impacto y prioridad.</div>
-          </div>
-        </article>
+          <article class="contact-panel sequence-stage stage-2">
+            <div class="panel-head">
+              <span class="stage-pill">Paso 2</span>
+              <h2>El LLM investiga tu empresa</h2>
+            </div>
+            <div class="scan-animation" aria-hidden="true">
+              <div class="scan-ring"></div>
+              <div class="scan-ring"></div>
+              <div class="scan-ring"></div>
+              <div class="scan-core"><i class="fas fa-sparkles"></i></div>
+            </div>
+            <ul class="scan-status">
+              <li><span class="status-dot active"></span>Analizando sitio web y propuesta de valor</li>
+              <li><span class="status-dot"></span>Identificando oportunidades de automatización</li>
+              <li><span class="status-dot"></span>Preparando preguntas para diagnóstico</li>
+            </ul>
+          </article>
 
-        <article class="contact-panel sent-stage">
-          <div class="panel-head">
-            <span class="stage-pill">Paso 4</span>
-            <h2>Envío confirmado</h2>
-          </div>
-          <div class="sent-animation" aria-hidden="true">
-            <div class="check-wrapper"><i class="fas fa-check"></i></div>
-            <div class="pulse pulse-1"></div>
-            <div class="pulse pulse-2"></div>
-          </div>
-          <p>Tu diagnóstico fue enviado. Un especialista de Quantics continuará el proceso con una propuesta personalizada.</p>
-        </article>
+          <article class="contact-panel sequence-stage stage-3">
+            <div class="panel-head">
+              <span class="stage-pill">Paso 3</span>
+              <h2>Chat de diagnóstico</h2>
+            </div>
+            <div class="chat-mock">
+              <div class="chat-bubble llm">¡Gracias! Ya revisé información pública de tu empresa. ¿Cuál es el proceso que hoy te genera más fricción?</div>
+              <div class="chat-bubble user">Tenemos mucho retrabajo en la gestión de órdenes y aprobación interna.</div>
+              <div class="chat-bubble llm">Perfecto. ¿Ese flujo depende de correo, ERP o planillas? Con eso estimo impacto y prioridad.</div>
+            </div>
+          </article>
+
+          <article class="contact-panel sequence-stage stage-4">
+            <div class="panel-head">
+              <span class="stage-pill">Paso 4</span>
+              <h2>Envío confirmado</h2>
+            </div>
+            <div class="sent-animation" aria-hidden="true">
+              <div class="check-wrapper"><i class="fas fa-check"></i></div>
+              <div class="pulse pulse-1"></div>
+              <div class="pulse pulse-2"></div>
+            </div>
+            <p>Tu diagnóstico fue enviado. Un especialista de Quantics continuará el proceso con una propuesta personalizada.</p>
+          </article>
+        </div>
       </div>
     </section>
   </main>
