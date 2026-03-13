@@ -3,108 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexusAI | Diagnóstico Inteligente</title>
-    
+    <title>Quantics | Contacto</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-        <link rel="stylesheet" href="css/chat.css" />
-
+    <link rel="stylesheet" href="css/chat.css" />
 </head>
 <body>
+    <main class="contact-page">
+        <a class="back-link" href="index.html">← Volver al inicio</a>
 
-    <canvas id="graph-canvas"></canvas>
-    <div class="bg-gradient"></div>
-    <div class="cursor-dot"></div>
+        <section class="contact-card">
+            <div class="contact-info">
+                <span class="eyebrow">Hablemos</span>
+                <h1>Cuéntanos en qué podemos ayudarte</h1>
+                <p>
+                    Diseñamos soluciones de consultoría en innovación, analítica e inteligencia artificial para equipos que buscan resultados medibles.
+                    Completa el formulario y te contactaremos dentro de las próximas 24 horas hábiles.
+                </p>
 
-    <div class="glass-panel" id="main-panel">
-        
-        <div class="view active" id="view-1">
-            <div class="v1-content">
-                <h1 class="huge-title">Diagnóstico<br>Basado en Datos.</h1>
-                <p class="huge-subtitle">Nuestra IA analizará la huella digital de tu empresa para identificar oportunidades de innovación.</p>
-                
-                <div class="clean-input-group">
-                    <input type="text" id="company-name" required placeholder="Ej. Nexus Corp, Acme S.A.">
-                    <label>Nombre de la Empresa</label>
-                </div>
-                
-                <div class="clean-input-group">
-                    <input type="text" id="industry" required placeholder="Ej. Finanzas, Logística, Retail">
-                    <label>Industria / Sector</label>
-                </div>
-
-                <button class="btn-magic" onclick="startFlow()">
-                    Iniciar Diagnóstico
-                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-                </button>
-            </div>
-        </div>
-
-        <div class="view" id="view-2">
-            <div class="v2-content">
-                <div class="scanner-ring">
-                    <svg viewBox="0 0 120 120">
-                        <circle class="bg" cx="60" cy="60" r="54"></circle>
-                        <circle class="progress" cx="60" cy="60" r="54"></circle>
-                    </svg>
-                    <div class="pulse-core"></div>
-                </div>
-                <h2 class="status-text" id="loading-title">Extrayendo datos de la web</h2>
-                <p class="status-sub" id="loading-sub">Analizando presencia digital y competidores...</p>
-            </div>
-        </div>
-
-        <div class="view chat-layout" id="view-3">
-            <div class="chat-topbar">
-                <div class="nexus-brand">
-                    <i class="fas fa-brain"></i> Agente NexusAI
-                </div>
-                <div style="display: flex; gap: 1rem; align-items: center;">
-                    <div class="context-tag">
-                        <i class="fas fa-database"></i> <span id="tag-company">Acme Corp</span>
-                    </div>
-                    <button class="btn-finish" onclick="finishInterview()">Finalizar Sesión</button>
-                </div>
+                <ul>
+                    <li><strong>Email:</strong> contacto@quantics.cl</li>
+                    <li><strong>Teléfono:</strong> +56 2 2456 9090</li>
+                    <li><strong>Horario:</strong> Lun - Vie, 09:00 a 18:00</li>
+                </ul>
             </div>
 
-            <div class="chat-scroll" id="chat-history">
+            <form id="contact-form" class="contact-form" novalidate>
+                <h2>Formulario de contacto</h2>
+
+                <div class="field-grid">
+                    <label>
+                        Nombre completo
+                        <input type="text" name="name" required autocomplete="name" placeholder="Ej. Ana Pérez" />
+                    </label>
+                    <label>
+                        Empresa
+                        <input type="text" name="company" required autocomplete="organization" placeholder="Ej. Inversiones Atlas" />
+                    </label>
                 </div>
 
-            <div class="input-dock">
-                <div class="dock-container">
-                    <input type="text" id="chat-input" placeholder="Responde para profundizar el diagnóstico..." onkeypress="handleKeyPress(event)">
-                    <button class="btn-send" onclick="sendMessage()">
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="view" id="view-4">
-            <div class="v4-content">
-                <div class="success-icon">
-                    <i class="fas fa-check"></i>
-                </div>
-                <h2 class="huge-title" style="font-size: 1.8rem;">Diagnóstico Estructurado</h2>
-                <p class="huge-subtitle" style="margin-bottom: 0;">La entrevista ha sido procesada exitosamente en formato de datos para tu equipo.</p>
-                
-                <div class="json-viewer">
-                    <pre><code id="json-output">
-</code></pre>
+                <div class="field-grid">
+                    <label>
+                        Correo corporativo
+                        <input type="email" name="email" required autocomplete="email" placeholder="nombre@empresa.com" />
+                    </label>
+                    <label>
+                        Teléfono
+                        <input type="tel" name="phone" autocomplete="tel" placeholder="+56 9 1234 5678" />
+                    </label>
                 </div>
 
-                <button class="btn-magic" onclick="alert('Descargando archivo diagnostico-nexus.json...')">
-                    Descargar Output (.json)
-                    <span class="arrow"><i class="fas fa-download"></i></span>
-                </button>
-            </div>
-        </div>
+                <label>
+                    Tipo de consulta
+                    <select name="topic" required>
+                        <option value="" selected disabled>Selecciona una opción</option>
+                        <option>Estrategia de IA</option>
+                        <option>Automatización de procesos</option>
+                        <option>Data & Analytics</option>
+                        <option>Desarrollo de soluciones a medida</option>
+                    </select>
+                </label>
 
-    </div>
+                <label>
+                    Mensaje
+                    <textarea name="message" required rows="5" placeholder="Cuéntanos brevemente tu desafío o proyecto."></textarea>
+                </label>
 
-        <script src="js/chat.js"></script>
+                <button type="submit">Enviar mensaje</button>
+                <p id="form-feedback" class="form-feedback" aria-live="polite"></p>
+            </form>
+        </section>
+    </main>
 
+    <script src="js/chat.js"></script>
 </body>
 </html>
