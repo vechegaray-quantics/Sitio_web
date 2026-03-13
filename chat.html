@@ -9,10 +9,50 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-        <link rel="stylesheet" href="css/chat.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/chat.css" />
 
 </head>
-<body>
+<body class="chat-page">
+
+    <header>
+        <div class="logo">
+            <a href="/">
+                <img src="img\2.png" alt="Quantics Logo" class="logo-img" style="height:180px;">
+            </a>
+        </div>
+        <input type="checkbox" id="menuToggle" hidden>
+        <label for="menuToggle" class="hamburger"><span class="bar1"></span><span class="bar2"></span><span class="bar3"></span></label>
+    </header>
+
+    <nav id="sideMenu">
+        <button class="close-btn" aria-label="Close menu">&times;</button>
+        <div class="menu-inner">
+            <div class="menu-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li><li><a href="#">Servicios</a></li>
+                    <li><a href="#">Nosotros</a></li><li><a href="blog.html">Blog</a></li>
+                    <li><a href="chat.html">Contacto</a></li>
+                </ul>
+                <div class="menu-social">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="extra-section">
+
+                <div class="post-card">
+                    <h4>Caso de Éxito</h4>
+                    <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=640" alt="post">
+                    <p class="title">Cómo la automatización con IA redujo costos operativos en un 40%</p>
+                    <div class="meta"><span></span><span>28.01.2026</span></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="chat-main">
 
     <canvas id="graph-canvas"></canvas>
     <div class="bg-gradient"></div>
@@ -103,8 +143,40 @@
         </div>
 
     </div>
+    </main>
 
-        <script src="js/chat.js"></script>
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">
+                    <a href="/">
+                        <img src="img\2.png" alt="Quantics Logo" class="logo-img" style="height:180px;">
+                    </a>
+                </div>
+            </div>
+            <nav class="footer-links">
+                <a href="index.html">Inicio</a><a href="#">Servicios</a><a href="#">Nosotros</a><a href="blog.html">Blog</a><a href="chat.html">Contacto</a>
+            </nav>
+            <div class="footer-info">
+                <div>
+                    <h5>Oficina Central</h5>
+                    <p>El Golf 99<br>Las Condes, Santiago</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-x-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>©2026 Quantics. Todos los derechos reservados.</p>
+            <div class="footer-meta"><a href="#">Términos y Condiciones</a><a href="#">Política de Privacidad</a></div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/chat.js"></script>
 
 </body>
 </html>

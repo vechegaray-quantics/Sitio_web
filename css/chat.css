@@ -20,12 +20,21 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        body {
+        body.chat-page {
             background-color: var(--bg-dark);
             color: var(--txt);
-            height: 100vh;
-            display: flex; align-items: center; justify-content: center;
-            overflow: hidden; position: relative;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .chat-main {
+            min-height: calc(100vh - 120px);
+            padding: 7rem 1rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
 
         /* --- CURSOR NEXUSAI --- */
@@ -38,7 +47,7 @@
 
         /* --- FONDO ANIMADO (NODOS) --- */
         #graph-canvas {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+            position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0;
             opacity: 0.6; /* Un poco más tenue para no distraer de la app */
         }
         
@@ -184,3 +193,34 @@
         .json-boolean { color: #f472b6; }
 
     
+
+
+        .chat-page .site-footer {
+            position: relative;
+            z-index: 30;
+        }
+
+        @media (max-width: 768px) {
+            .chat-main {
+                padding: 6.5rem 0.75rem 2rem;
+                min-height: calc(100vh - 90px);
+            }
+
+            .glass-panel {
+                height: min(82vh, 680px);
+            }
+
+            .chat-topbar {
+                padding: 1rem 1rem;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+            }
+
+            .chat-scroll {
+                padding: 6.5rem 1rem 1.5rem;
+            }
+
+            .input-dock {
+                padding: 1rem;
+            }
+        }
