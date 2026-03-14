@@ -88,7 +88,7 @@ let companyData = {};
 let chatSessionId = null;
 let isSendingMessage = false;
 
-const API_BASE_URL = window.NEXUS_API_BASE_URL || 'http://localhost:8080/v1';
+const API_BASE_URL = window.NEXUS_API_BASE_URL || "https://api-y2upbboyhq-tl.a.run.app/v1";
 
 function switchView(viewId) {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
