@@ -22,11 +22,11 @@
         
         <div class="view active" id="view-1">
             <div class="v1-content">
-                <h1 class="huge-title">Diagnóstico<br>Basado en Datos.</h1>
-                <p class="huge-subtitle">Nuestro agente se encargará del primer engagement. Responde a sus preguntas para acelerar el diagnóstico.</p>
+                <h1 class="huge-title">Diagnóstico Inicial</h1>
+                <p class="huge-subtitle">Nuestro agente IA se encargará del primer engagement.<br>Responde a sus preguntas para acelerar el diagnóstico.</p>
                 
                 <div class="clean-input-group">
-                    <input type="text" id="company-name" required placeholder="Ej. Nexus Corp, Acme S.A.">
+                    <input type="text" id="company-name" required placeholder="Ej. Nexus Corp">
                     <label>Nombre de la Empresa</label>
                 </div>
                 
@@ -51,8 +51,8 @@
                     </svg>
                     <div class="pulse-core"></div>
                 </div>
-                <h2 class="status-text" id="loading-title">Extrayendo datos de la web</h2>
-                <p class="status-sub" id="loading-sub">Analizando presencia digital y competidores...</p>
+                <h2 class="status-text" id="loading-title">Conectando con nuestro Agente</h2>
+                <p class="status-sub" id="loading-sub"></p>
             </div>
         </div>
 
@@ -63,9 +63,9 @@
                 </div>
                 <div style="display: flex; gap: 1rem; align-items: center;">
                     <div class="context-tag">
-                        <i class="fas fa-database"></i> <span id="tag-company">Acme Corp</span>
+                        <i class="fas fa-database"></i> <span id="tag-company"></span>
                     </div>
-                    <button class="btn-finish" onclick="finishInterview()">Finalizar Sesión</button>
+                    <!--<button class="btn-finish" onclick="finishInterview()">Finalizar Sesión</button>-->
                 </div>
             </div>
 
@@ -87,18 +87,18 @@
                 <div class="success-icon">
                     <i class="fas fa-check"></i>
                 </div>
-                <h2 class="huge-title" style="font-size: 1.8rem;">Diagnóstico Estructurado</h2>
-                <p class="huge-subtitle" style="margin-bottom: 0;">La entrevista ha sido procesada exitosamente en formato de datos para tu equipo.</p>
+                <h2 class="huge-title" style="font-size: 1.8rem;">Diagnóstico Finalizado</h2>
+                <p class="huge-subtitle" style="margin-bottom: 0;">La entrevista ha sido procesada exitosamente.</p>
                 
-                <div class="json-viewer">
+                <!--<div class="json-viewer">
                     <pre><code id="json-output">
 </code></pre>
-                </div>
+                </div>-->
 
-                <button class="btn-magic" onclick="alert('Descargando archivo diagnostico-nexus.json...')">
+                <!--<button class="btn-magic" onclick="alert('Descargando archivo diagnostico-nexus.json...')">
                     Descargar Output (.json)
                     <span class="arrow"><i class="fas fa-download"></i></span>
-                </button>
+                </button>-->
             </div>
         </div>
 
