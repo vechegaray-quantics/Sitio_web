@@ -223,9 +223,9 @@ async function startFlow() {
 
     switchView(2);
     document.getElementById('loading-title').innerText =
-        'Iniciando sesión de diagnóstico';
+        'Conectando con nuestro Agente';
     document.getElementById('loading-sub').innerText =
-        'Conectando con el microservicio de IA...';
+        '';
 
     try {
         const session = await apiRequest('/sessions', {
@@ -314,9 +314,9 @@ async function finishInterview() {
         return;
     }
 
-    document.getElementById('loading-title').innerText = 'Estructurando Output';
+    document.getElementById('loading-title').innerText = 'Diagnóstico Finalizado';
     document.getElementById('loading-sub').innerText =
-        'Generando archivo JSON para el equipo de NexusAI...';
+        'Procesando entrevista....';
     switchView(2);
 
     try {
