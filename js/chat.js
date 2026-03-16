@@ -128,15 +128,31 @@ let humanVerificationToken = null;
 const API_BASE_URL =
     window.NEXUS_API_BASE_URL || 'https://api-y2upbboyhq-tl.a.run.app/v1';
 
-function setStartButtonEnabled(enabled) {
-    const button = document.getElementById('start-flow-btn');
-    if (!button) return;
-    button.disabled = !enabled;
+window.onTurnstileSuccess = function onTurnstileSuccess(token) {
+    humanVerificationToken = token;
+};
+
+window.onTurnstileExpired = function onTurnstileExpired() {
+    humanVerificationToken = null;
+};
+
+window.onTurnstileError = function onTurnstileError() {
+    humanVerificationToken = null;
+};
+
+function getTurnstileToken() {
+    const hiddenInput = document.querySelector(
+        'input[name="cf-turnstile-response"]'
+    );
+
+    const hiddenValue = hiddenInput?.value?.trim();
+    if (hiddenValue) return hiddenValue;
+
+    return humanVerificationToken;
 }
 
-function resetTurnstileWidget() {
+function resetTurnstileIfAvailable() {
     humanVerificationToken = null;
-    setStartButtonEnabled(false);
 
     if (window.turnstile) {
         try {
@@ -146,19 +162,6 @@ function resetTurnstileWidget() {
         }
     }
 }
-
-window.onTurnstileSuccess = function onTurnstileSuccess(token) {
-    humanVerificationToken = token;
-    setStartButtonEnabled(true);
-};
-
-window.onTurnstileExpired = function onTurnstileExpired() {
-    resetTurnstileWidget();
-};
-
-window.onTurnstileError = function onTurnstileError() {
-    resetTurnstileWidget();
-};
 
 function switchView(viewId) {
     document.querySelectorAll('.view').forEach((v) => v.classList.remove('active'));
@@ -264,13 +267,14 @@ async function startFlow() {
     const name = companyNameInput ? companyNameInput.value.trim() : '';
     const ind = industryInput ? industryInput.value.trim() : '';
     const email = contactEmailInput ? contactEmailInput.value.trim() : '';
+    const turnstileToken = getTurnstileToken();
 
     if (!name || !ind || !email) {
         alert('Completa nombre de empresa, rubro y email.');
         return;
     }
 
-    if (!humanVerificationToken) {
+    if (!turnstileToken) {
         alert('Completa la validación de humano antes de iniciar el diagnóstico.');
         return;
     }
@@ -294,8 +298,6 @@ async function startFlow() {
     if (loadingTitle) loadingTitle.innerText = 'Conectando con nuestro Agente';
     if (loadingSub) loadingSub.innerText = '';
 
-    console.log('TOKEN USADO EN STARTFLOW:', humanVerificationToken);
-
     try {
         const payload = {
             company: {
@@ -312,11 +314,9 @@ async function startFlow() {
             },
             captcha: {
                 provider: 'turnstile',
-                token: humanVerificationToken,
+                token: turnstileToken,
             },
         };
-
-        console.log('PAYLOAD FINAL /sessions:', JSON.stringify(payload, null, 2));
 
         const session = await apiRequest('/sessions', payload);
 
@@ -338,6 +338,7 @@ async function startFlow() {
         humanVerificationToken = null;
     } catch (error) {
         switchView(1);
+        resetTurnstileIfAvailable();
         alert(`No se pudo iniciar el diagnóstico: ${error.message}`);
     }
 }
