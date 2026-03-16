@@ -470,12 +470,10 @@ async function finishInterview() {
     switchView(2);
 
     try {
-        const result = await apiRequest(`/sessions/${chatSessionId}/finalize`, {
-            format: 'json',
-            includeTranscript: true,
+        await apiRequest(`/sessions/${chatSessionId}/finalize`, {
+            includeTranscript: false,
         });
 
-        renderJSONOutput(result.report || result);
         switchView(4);
     } catch (error) {
         switchView(3);
@@ -484,17 +482,8 @@ async function finishInterview() {
     }
 }
 
-function renderJSONOutput(outputData) {
-    const jsonString = JSON.stringify(outputData, null, 2);
-    const highlightedJSON = jsonString
-        .replace(/"([^"]+)":/g, '<span class="json-key">"$1"</span>:')
-        .replace(/: "([^"]+)"/g, ': <span class="json-string">"$1"</span>')
-        .replace(/: (true|false)/g, ': <span class="json-boolean">$1</span>');
-
-    const output = document.getElementById('json-output');
-    if (output) {
-        output.innerHTML = highlightedJSON;
-    }
+function goToHome() {
+    window.location.href = 'index.html';
 }
 
 const startFlowButton = document.getElementById('start-flow-btn');
