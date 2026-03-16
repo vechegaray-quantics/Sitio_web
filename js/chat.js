@@ -128,16 +128,25 @@ let humanVerificationToken = null;
 const API_BASE_URL =
     window.NEXUS_API_BASE_URL || 'https://api-y2upbboyhq-tl.a.run.app/v1';
 
+function setStartButtonEnabled(enabled) {
+    const button = document.getElementById('start-flow-btn');
+    if (!button) return;
+    button.disabled = !enabled;
+}
+
 window.onTurnstileSuccess = function onTurnstileSuccess(token) {
     humanVerificationToken = token;
+    setStartButtonEnabled(true);
 };
 
 window.onTurnstileExpired = function onTurnstileExpired() {
     humanVerificationToken = null;
+    setStartButtonEnabled(false);
 };
 
 window.onTurnstileError = function onTurnstileError() {
     humanVerificationToken = null;
+    setStartButtonEnabled(false);
 };
 
 function switchView(viewId) {
@@ -274,6 +283,8 @@ async function startFlow() {
     if (loadingTitle) loadingTitle.innerText = 'Conectando con nuestro Agente';
     if (loadingSub) loadingSub.innerText = '';
 
+    setStartButtonEnabled(false);
+
     try {
         const session = await apiRequest('/sessions', {
             company: {
@@ -312,6 +323,7 @@ async function startFlow() {
         humanVerificationToken = null;
     } catch (error) {
         switchView(1);
+        setStartButtonEnabled(Boolean(humanVerificationToken));
         alert(`No se pudo iniciar el diagnóstico: ${error.message}`);
     }
 }
