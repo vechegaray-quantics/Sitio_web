@@ -124,30 +124,53 @@ let companyData = {};
 let chatSessionId = null;
 let isSendingMessage = false;
 let isStartingFlow = false;
-let humanVerificationToken = null;
+let humanVerificationToken = window.__turnstileState?.token || null;
 
 const API_BASE_URL =
     window.NEXUS_API_BASE_URL || 'https://api-y2upbboyhq-tl.a.run.app/v1';
 
 window.onTurnstileSuccess = function onTurnstileSuccess(token) {
-    humanVerificationToken = token;
+    humanVerificationToken = token || null;
+
+    if (window.__turnstileState) {
+        window.__turnstileState.token = humanVerificationToken;
+    }
 };
 
 window.onTurnstileExpired = function onTurnstileExpired() {
     humanVerificationToken = null;
+
+    if (window.__turnstileState) {
+        window.__turnstileState.token = null;
+    }
 };
 
 window.onTurnstileError = function onTurnstileError() {
     humanVerificationToken = null;
+
+    if (window.__turnstileState) {
+        window.__turnstileState.token = null;
+    }
 };
 
 function getTurnstileToken() {
     if (window.turnstile) {
         try {
-            const widgetValue = window.turnstile
-                .getResponse('#turnstile-widget')
-                ?.trim();
-            if (widgetValue) return widgetValue;
+            const defaultWidgetValue = window.turnstile.getResponse()?.trim();
+            if (defaultWidgetValue) return defaultWidgetValue;
+        } catch (_) {
+            // no-op
+        }
+
+        try {
+            const widgetElement = document.getElementById('turnstile-widget');
+            if (widgetElement) {
+                const widgetValue = window.turnstile
+                    .getResponse(widgetElement)
+                    ?.trim();
+
+                if (widgetValue) return widgetValue;
+            }
         } catch (_) {
             // no-op
         }
@@ -160,11 +183,18 @@ function getTurnstileToken() {
     const hiddenValue = hiddenInput?.value?.trim();
     if (hiddenValue) return hiddenValue;
 
+    const persistedToken = window.__turnstileState?.token?.trim();
+    if (persistedToken) return persistedToken;
+
     return humanVerificationToken;
 }
 
 function resetTurnstileIfAvailable() {
     humanVerificationToken = null;
+
+    if (window.__turnstileState) {
+        window.__turnstileState.token = null;
+    }
 
     if (window.turnstile) {
         try {
