@@ -119,9 +119,22 @@ if (canvas) {
 let companyData = {};
 let chatSessionId = null;
 let isSendingMessage = false;
+let humanVerificationToken = null;
 
 const API_BASE_URL =
     window.NEXUS_API_BASE_URL || 'https://api-y2upbboyhq-tl.a.run.app/v1';
+
+window.onTurnstileSuccess = function (token) {
+    humanVerificationToken = token;
+};
+
+window.onTurnstileExpired = function () {
+    humanVerificationToken = null;
+};
+
+window.onTurnstileError = function () {
+    humanVerificationToken = null;
+};
 
 function switchView(viewId) {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -218,6 +231,11 @@ async function startFlow() {
 
     if (!name || !ind || !email) return;
 
+    if (!humanVerificationToken) {
+        alert('Completa la validación de humano antes de iniciar el diagnóstico.');
+        return;
+    }
+
     companyData.name = name;
     companyData.industry = ind;
     companyData.email = email;
@@ -230,20 +248,24 @@ async function startFlow() {
     document.getElementById('loading-sub').innerText = '';
 
     try {
-        const session = await apiRequest('/sessions', {
-            company: {
-                name,
-                industry: ind,
-            },
-            contact: {
-                email,
-            },
-            client: {
-                locale: navigator.language || 'es-ES',
-                timezone:
-                    Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC',
-            },
-        });
+const session = await apiRequest('/sessions', {
+    company: {
+        name,
+        industry: ind,
+    },
+    contact: {
+        email,
+    },
+    client: {
+        locale: navigator.language || 'es-ES',
+        timezone:
+            Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC',
+    },
+    captcha: {
+        provider: 'turnstile',
+        token: humanVerificationToken,
+    },
+});
 
         chatSessionId = session.sessionId;
 
