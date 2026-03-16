@@ -134,19 +134,30 @@ function setStartButtonEnabled(enabled) {
     button.disabled = !enabled;
 }
 
+function resetTurnstileWidget() {
+    humanVerificationToken = null;
+    setStartButtonEnabled(false);
+
+    if (window.turnstile) {
+        try {
+            window.turnstile.reset('#turnstile-widget');
+        } catch (_) {
+            // no-op
+        }
+    }
+}
+
 window.onTurnstileSuccess = function onTurnstileSuccess(token) {
     humanVerificationToken = token;
     setStartButtonEnabled(true);
 };
 
 window.onTurnstileExpired = function onTurnstileExpired() {
-    humanVerificationToken = null;
-    setStartButtonEnabled(false);
+    resetTurnstileWidget();
 };
 
 window.onTurnstileError = function onTurnstileError() {
-    humanVerificationToken = null;
-    setStartButtonEnabled(false);
+    resetTurnstileWidget();
 };
 
 function switchView(viewId) {
@@ -285,6 +296,8 @@ async function startFlow() {
 
     setStartButtonEnabled(false);
 
+    const tokenToSend = humanVerificationToken;
+
     try {
         const session = await apiRequest('/sessions', {
             company: {
@@ -301,7 +314,7 @@ async function startFlow() {
             },
             captcha: {
                 provider: 'turnstile',
-                token: humanVerificationToken,
+                token: tokenToSend,
             },
         });
 
@@ -320,10 +333,10 @@ async function startFlow() {
         appendMessage(initialMessage, 'ai');
         setChatInputEnabled(true);
 
-        humanVerificationToken = null;
+        resetTurnstileWidget();
     } catch (error) {
         switchView(1);
-        setStartButtonEnabled(Boolean(humanVerificationToken));
+        resetTurnstileWidget();
         alert(`No se pudo iniciar el diagnóstico: ${error.message}`);
     }
 }
