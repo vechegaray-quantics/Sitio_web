@@ -123,6 +123,7 @@ if (canvas) {
 let companyData = {};
 let chatSessionId = null;
 let isSendingMessage = false;
+let isStartingFlow = false;
 let humanVerificationToken = null;
 
 const API_BASE_URL =
@@ -141,6 +142,17 @@ window.onTurnstileError = function onTurnstileError() {
 };
 
 function getTurnstileToken() {
+    if (window.turnstile) {
+        try {
+            const widgetValue = window.turnstile
+                .getResponse('#turnstile-widget')
+                ?.trim();
+            if (widgetValue) return widgetValue;
+        } catch (_) {
+            // no-op
+        }
+    }
+
     const hiddenInput = document.querySelector(
         'input[name="cf-turnstile-response"]'
     );
@@ -259,7 +271,18 @@ async function apiRequest(path, payload) {
     return data;
 }
 
+function setStartButtonLoading(isLoading) {
+    const startButton = document.getElementById('start-flow-btn');
+    if (!startButton) return;
+
+    startButton.disabled = isLoading;
+    startButton.style.opacity = isLoading ? '0.7' : '';
+    startButton.style.pointerEvents = isLoading ? 'none' : '';
+}
+
 async function startFlow() {
+    if (isStartingFlow) return;
+
     const companyNameInput = document.getElementById('company-name');
     const industryInput = document.getElementById('industry');
     const contactEmailInput = document.getElementById('contact-email');
@@ -278,6 +301,9 @@ async function startFlow() {
         alert('Completa la validación de humano antes de iniciar el diagnóstico.');
         return;
     }
+
+    isStartingFlow = true;
+    setStartButtonLoading(true);
 
     companyData = {
         name,
@@ -340,6 +366,9 @@ async function startFlow() {
         switchView(1);
         resetTurnstileIfAvailable();
         alert(`No se pudo iniciar el diagnóstico: ${error.message}`);
+    } finally {
+        isStartingFlow = false;
+        setStartButtonLoading(false);
     }
 }
 
@@ -436,4 +465,9 @@ function renderJSONOutput(outputData) {
     if (output) {
         output.innerHTML = highlightedJSON;
     }
+}
+
+const startFlowButton = document.getElementById('start-flow-btn');
+if (startFlowButton) {
+    startFlowButton.addEventListener('click', startFlow);
 }
