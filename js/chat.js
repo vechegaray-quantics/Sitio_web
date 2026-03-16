@@ -214,24 +214,29 @@ async function apiRequest(path, payload) {
 async function startFlow() {
     const name = document.getElementById('company-name').value.trim();
     const ind = document.getElementById('industry').value.trim();
+    const email = document.getElementById('contact-email').value.trim();
 
-    if (!name || !ind) return;
+    if (!name || !ind || !email) return;
 
     companyData.name = name;
     companyData.industry = ind;
+    companyData.email = email;
+
     document.getElementById('tag-company').innerText = name;
 
     switchView(2);
     document.getElementById('loading-title').innerText =
         'Conectando con nuestro Agente';
-    document.getElementById('loading-sub').innerText =
-        '';
+    document.getElementById('loading-sub').innerText = '';
 
     try {
         const session = await apiRequest('/sessions', {
             company: {
                 name,
                 industry: ind,
+            },
+            contact: {
+                email,
             },
             client: {
                 locale: navigator.language || 'es-ES',
@@ -316,7 +321,7 @@ async function finishInterview() {
 
     document.getElementById('loading-title').innerText = 'Diagnóstico Finalizado';
     document.getElementById('loading-sub').innerText =
-        'Procesando entrevista....';
+        'Procesando entrevista...';
     switchView(2);
 
     try {
