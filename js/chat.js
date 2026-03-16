@@ -1,16 +1,18 @@
-/* Cursor dot (De tu código original) */
+/* Cursor dot */
 const dot = document.querySelector('.cursor-dot');
-document.addEventListener('mousemove', e => {
+document.addEventListener('mousemove', (e) => {
     if (!dot) return;
-    dot.style.top = e.clientY + 'px';
-    dot.style.left = e.clientX + 'px';
+    dot.style.top = `${e.clientY}px`;
+    dot.style.left = `${e.clientX}px`;
 });
 
-/* Animación de Nodos (Canvas de tu código original) */
+/* Animación de Nodos */
 const canvas = document.getElementById('graph-canvas');
 if (canvas) {
     const ctx = canvas.getContext('2d');
-    let width, height, nodes;
+    let width;
+    let height;
+    let nodes;
 
     const config = {
         nodeCount: 150,
@@ -39,6 +41,7 @@ if (canvas) {
 
         draw() {
             this.project(width * 0.8);
+
             if (
                 this.projX > 0 &&
                 this.projX < width &&
@@ -59,7 +62,8 @@ if (canvas) {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
         nodes = [];
-        for (let i = 0; i < config.nodeCount; i++) {
+
+        for (let i = 0; i < config.nodeCount; i += 1) {
             nodes.push(new Node());
         }
     }
@@ -82,13 +86,13 @@ if (canvas) {
     function draw() {
         ctx.clearRect(0, 0, width, height);
 
-        nodes.forEach(node => {
+        nodes.forEach((node) => {
             rotate(node, config.rotationSpeed, config.rotationSpeed);
             node.draw();
         });
 
-        for (let i = 0; i < nodes.length; i++) {
-            for (let j = i + 1; j < nodes.length; j++) {
+        for (let i = 0; i < nodes.length; i += 1) {
+            for (let j = i + 1; j < nodes.length; j += 1) {
                 const n1 = nodes[i];
                 const n2 = nodes[j];
                 const dx = n1.projX - n2.projX;
@@ -124,21 +128,22 @@ let humanVerificationToken = null;
 const API_BASE_URL =
     window.NEXUS_API_BASE_URL || 'https://api-y2upbboyhq-tl.a.run.app/v1';
 
-window.onTurnstileSuccess = function (token) {
+window.onTurnstileSuccess = function onTurnstileSuccess(token) {
     humanVerificationToken = token;
 };
 
-window.onTurnstileExpired = function () {
+window.onTurnstileExpired = function onTurnstileExpired() {
     humanVerificationToken = null;
 };
 
-window.onTurnstileError = function () {
+window.onTurnstileError = function onTurnstileError() {
     humanVerificationToken = null;
 };
 
 function switchView(viewId) {
-    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    document.getElementById(`view-${viewId}`).classList.add('active');
+    document.querySelectorAll('.view').forEach((v) => v.classList.remove('active'));
+    const target = document.getElementById(`view-${viewId}`);
+    if (target) target.classList.add('active');
 }
 
 function createMessage(content, sender, isTyping = false) {
@@ -159,6 +164,7 @@ function createMessage(content, sender, isTyping = false) {
         <div class="avatar">${avatarIcon}</div>
         <div class="bubble">${bubbleContent}</div>
     `;
+
     return wrapper;
 }
 
@@ -168,12 +174,16 @@ function getChatHistoryElement() {
 
 function appendMessage(content, sender) {
     const history = getChatHistoryElement();
+    if (!history) return;
+
     history.appendChild(createMessage(content, sender));
     history.scrollTop = history.scrollHeight;
 }
 
 function showTyping() {
     const history = getChatHistoryElement();
+    if (!history) return;
+
     history.appendChild(createMessage('', 'ai', true));
     history.scrollTop = history.scrollHeight;
 }
@@ -190,12 +200,14 @@ function getChatInputElement() {
 function setChatInputEnabled(enabled) {
     const input = getChatInputElement();
     if (!input) return;
+
     input.disabled = !enabled;
     if (enabled) input.focus();
 }
 
 function isChatViewActive() {
-    return document.getElementById('view-3').classList.contains('active');
+    const view = document.getElementById('view-3');
+    return Boolean(view && view.classList.contains('active'));
 }
 
 async function apiRequest(path, payload) {
@@ -225,58 +237,79 @@ async function apiRequest(path, payload) {
 }
 
 async function startFlow() {
-    const name = document.getElementById('company-name').value.trim();
-    const ind = document.getElementById('industry').value.trim();
-    const email = document.getElementById('contact-email').value.trim();
+    const companyNameInput = document.getElementById('company-name');
+    const industryInput = document.getElementById('industry');
+    const contactEmailInput = document.getElementById('contact-email');
 
-    if (!name || !ind || !email) return;
+    const name = companyNameInput ? companyNameInput.value.trim() : '';
+    const ind = industryInput ? industryInput.value.trim() : '';
+    const email = contactEmailInput ? contactEmailInput.value.trim() : '';
+
+    if (!name || !ind || !email) {
+        alert('Completa nombre de empresa, rubro y email.');
+        return;
+    }
 
     if (!humanVerificationToken) {
         alert('Completa la validación de humano antes de iniciar el diagnóstico.');
         return;
     }
 
-    companyData.name = name;
-    companyData.industry = ind;
-    companyData.email = email;
-
-    document.getElementById('tag-company').innerText = name;
-
-    switchView(2);
-    document.getElementById('loading-title').innerText =
-        'Conectando con nuestro Agente';
-    document.getElementById('loading-sub').innerText = '';
-
-    try {
-const session = await apiRequest('/sessions', {
-    company: {
+    companyData = {
         name,
         industry: ind,
-    },
-    contact: {
         email,
-    },
-    client: {
-        locale: navigator.language || 'es-ES',
-        timezone:
-            Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC',
-    },
-    captcha: {
-        provider: 'turnstile',
-        token: humanVerificationToken,
-    },
-});
+    };
+
+    const tagCompany = document.getElementById('tag-company');
+    if (tagCompany) {
+        tagCompany.innerText = name;
+    }
+
+    switchView(2);
+
+    const loadingTitle = document.getElementById('loading-title');
+    const loadingSub = document.getElementById('loading-sub');
+
+    if (loadingTitle) loadingTitle.innerText = 'Conectando con nuestro Agente';
+    if (loadingSub) loadingSub.innerText = '';
+
+    try {
+        const session = await apiRequest('/sessions', {
+            company: {
+                name,
+                industry: ind,
+            },
+            contact: {
+                email,
+            },
+            client: {
+                locale: navigator.language || 'es-ES',
+                timezone:
+                    Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC',
+            },
+            captcha: {
+                provider: 'turnstile',
+                token: humanVerificationToken,
+            },
+        });
 
         chatSessionId = session.sessionId;
 
         switchView(3);
-        getChatHistoryElement().innerHTML = '';
+        const history = getChatHistoryElement();
+        if (history) {
+            history.innerHTML = '';
+        }
 
         const initialMessage =
             session.assistantMessage ||
             'Sesión iniciada. ¿Qué reto quieres priorizar primero?';
+
         appendMessage(initialMessage, 'ai');
         setChatInputEnabled(true);
+
+        humanVerificationToken = null;
     } catch (error) {
         switchView(1);
         alert(`No se pudo iniciar el diagnóstico: ${error.message}`);
@@ -285,7 +318,7 @@ const session = await apiRequest('/sessions', {
 
 async function sendMessage() {
     const input = getChatInputElement();
-    const text = input.value.trim();
+    const text = input ? input.value.trim() : '';
 
     if (!text || isSendingMessage) return;
 
@@ -298,7 +331,7 @@ async function sendMessage() {
     setChatInputEnabled(false);
 
     appendMessage(text, 'user');
-    input.value = '';
+    if (input) input.value = '';
     showTyping();
 
     try {
@@ -311,6 +344,7 @@ async function sendMessage() {
         const aiResponse =
             data.assistantMessage ||
             'He registrado tu respuesta para el diagnóstico.';
+
         appendMessage(aiResponse, 'ai');
 
         if (data.sessionCompleted === true) {
@@ -341,9 +375,12 @@ async function finishInterview() {
         return;
     }
 
-    document.getElementById('loading-title').innerText = 'Diagnóstico Finalizado';
-    document.getElementById('loading-sub').innerText =
-        'Procesando entrevista...';
+    const loadingTitle = document.getElementById('loading-title');
+    const loadingSub = document.getElementById('loading-sub');
+
+    if (loadingTitle) loadingTitle.innerText = 'Diagnóstico Finalizado';
+    if (loadingSub) loadingSub.innerText = 'Procesando entrevista...';
+
     switchView(2);
 
     try {
@@ -368,5 +405,8 @@ function renderJSONOutput(outputData) {
         .replace(/: "([^"]+)"/g, ': <span class="json-string">"$1"</span>')
         .replace(/: (true|false)/g, ': <span class="json-boolean">$1</span>');
 
-    document.getElementById('json-output').innerHTML = highlightedJSON;
+    const output = document.getElementById('json-output');
+    if (output) {
+        output.innerHTML = highlightedJSON;
+    }
 }
