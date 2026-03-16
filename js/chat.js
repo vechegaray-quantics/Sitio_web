@@ -294,12 +294,10 @@ async function startFlow() {
     if (loadingTitle) loadingTitle.innerText = 'Conectando con nuestro Agente';
     if (loadingSub) loadingSub.innerText = '';
 
-    setStartButtonEnabled(false);
-
-    const tokenToSend = humanVerificationToken;
+    console.log('TOKEN USADO EN STARTFLOW:', humanVerificationToken);
 
     try {
-        const session = await apiRequest('/sessions', {
+        const payload = {
             company: {
                 name,
                 industry: ind,
@@ -314,9 +312,13 @@ async function startFlow() {
             },
             captcha: {
                 provider: 'turnstile',
-                token: tokenToSend,
+                token: humanVerificationToken,
             },
-        });
+        };
+
+        console.log('PAYLOAD FINAL /sessions:', JSON.stringify(payload, null, 2));
+
+        const session = await apiRequest('/sessions', payload);
 
         chatSessionId = session.sessionId;
 
@@ -333,10 +335,9 @@ async function startFlow() {
         appendMessage(initialMessage, 'ai');
         setChatInputEnabled(true);
 
-        resetTurnstileWidget();
+        humanVerificationToken = null;
     } catch (error) {
         switchView(1);
-        resetTurnstileWidget();
         alert(`No se pudo iniciar el diagnóstico: ${error.message}`);
     }
 }
