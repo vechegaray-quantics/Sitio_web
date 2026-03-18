@@ -218,8 +218,14 @@ function createMessage(content, sender, isTyping = false) {
 
     const avatarIcon =
         sender === 'ai'
-            ? '<i class="fas fa-brain"></i>'
-            : '<i class="fas fa-user"></i>';
+            ? `
+                <svg class="avatar-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M12 2a2.75 2.75 0 0 0-2.75 2.75V6H8.5A3.5 3.5 0 0 0 5 9.5V15a3.5 3.5 0 0 0 3.5 3.5h7A3.5 3.5 0 0 0 19 15V9.5A3.5 3.5 0 0 0 15.5 6h-.75V4.75A2.75 2.75 0 0 0 12 2Zm-1.25 4V4.75a1.25 1.25 0 1 1 2.5 0V6h-2.5ZM9 10.75A1.25 1.25 0 1 1 10.25 12 1.25 1.25 0 0 1 9 10.75Zm4.75 0A1.25 1.25 0 1 1 15 12a1.25 1.25 0 0 1-1.25-1.25ZM9.28 15.53a.75.75 0 0 1 1.06 0 2.36 2.36 0 0 0 3.32 0 .75.75 0 1 1 1.06 1.06 3.86 3.86 0 0 1-5.44 0 .75.75 0 0 1 0-1.06Z" />
+                </svg>`
+            : `
+                <svg class="avatar-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M12 12.25a4.13 4.13 0 1 0-4.12-4.13A4.13 4.13 0 0 0 12 12.25Zm0 2c-4.28 0-7.75 2.6-7.75 5.81 0 .52.42.94.94.94h13.62a.94.94 0 0 0 .94-.94c0-3.21-3.47-5.81-7.75-5.81Z" />
+                </svg>`;
 
     const bubbleContent = isTyping
         ? '<div class="dot-typing"><span></span><span></span><span></span></div>'

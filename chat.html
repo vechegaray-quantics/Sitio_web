@@ -91,7 +91,7 @@
                 <div class="nexus-brand">
                     <i class="fas fa-brain"></i> Agente Quantics
                 </div>
-                <div style="display: flex; gap: 1rem; align-items: center;">
+                <div class="topbar-actions">
                     <div class="context-tag">
                         <i class="fas fa-database"></i> <span id="tag-company"></span>
                     </div>
@@ -105,8 +105,10 @@
             <div class="input-dock">
                 <div class="dock-container">
                     <input type="text" id="chat-input" placeholder="Responde para profundizar el diagnóstico..." onkeypress="handleKeyPress(event)">
-                    <button class="btn-send" onclick="sendMessage()">
-                        <i class="fas fa-paper-plane"></i>
+                    <button class="btn-send" type="button" aria-label="Enviar respuesta" onclick="sendMessage()">
+                        <svg class="send-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path fill="currentColor" d="M3.4 20.4 20.85 12 3.4 3.6v6.3l11.1 2.1-11.1 2.1v6.3Z" />
+                        </svg>
                     </button>
                 </div>
             </div>
