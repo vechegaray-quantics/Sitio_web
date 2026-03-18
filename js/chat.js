@@ -464,8 +464,8 @@ async function finishInterview() {
     const loadingTitle = document.getElementById('loading-title');
     const loadingSub = document.getElementById('loading-sub');
 
-    if (loadingTitle) loadingTitle.innerText = 'Diagnóstico Finalizado';
-    if (loadingSub) loadingSub.innerText = 'Procesando entrevista...';
+    if (loadingTitle) loadingTitle.innerText = 'Procesando entrevista..';
+    if (loadingSub) loadingSub.innerText = 'Esto puede tardar unos segundos';
 
     switchView(2);
 
