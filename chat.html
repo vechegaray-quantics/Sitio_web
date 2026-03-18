@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantics AI| Diagnóstico Inteligente</title>
-    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quantics AI | Diagnóstico Inteligente</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    />
+    <script
+        src="https://kit.fontawesome.com/a076d05399.js"
+        crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="css/chat.css" />
+
     <script>
         window.__turnstileState = window.__turnstileState || { token: null };
 
@@ -24,51 +31,72 @@
             window.__turnstileState.token = null;
         };
     </script>
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
+    <script
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+        async
+        defer
+    ></script>
 </head>
 <body>
-
     <canvas id="graph-canvas"></canvas>
     <div class="bg-gradient"></div>
     <div class="cursor-dot"></div>
 
     <div class="glass-panel" id="main-panel">
-        
         <div class="view active" id="view-1">
             <div class="v1-content">
                 <h1 class="huge-title">Diagnóstico Inicial</h1>
-                <p class="huge-subtitle">Nuestro agente IA se encargará del primer engagement.<br>Responde a sus preguntas para acelerar el diagnóstico.<br>Esto no toma más de 5 minutos.</p>
-                
+                <p class="huge-subtitle">
+                    Nuestro agente IA se encargará del primer engagement.<br />
+                    Responde a sus preguntas para acelerar el diagnóstico.<br />
+                    Esto no toma más de 5 minutos.
+                </p>
+
                 <div class="clean-input-group">
-                    <input type="text" id="company-name" required placeholder="Ej. Nexus Corp">
+                    <input
+                        type="text"
+                        id="company-name"
+                        required
+                        placeholder="Ej. Nexus Corp"
+                    />
                     <label>Nombre de la Empresa</label>
                 </div>
-                
+
                 <div class="clean-input-group">
-                    <input type="text" id="industry" required placeholder="Ej. Finanzas, Logística, Retail">
+                    <input
+                        type="text"
+                        id="industry"
+                        required
+                        placeholder="Ej. Finanzas, Logística, Retail"
+                    />
                     <label>Industria / Sector</label>
                 </div>
+
                 <div class="clean-input-group">
-                    <input type="email" id="contact-email" required placeholder="nombre@empresa.com">
+                    <input
+                        type="email"
+                        id="contact-email"
+                        required
+                        placeholder="nombre@empresa.com"
+                    />
                     <label>Email</label>
                 </div>
-<div class="turnstile-wrap">
-    <div
-        id="turnstile-widget"
-        class="cf-turnstile"
-        data-sitekey="0x4AAAAAACrvwz0HKnicGq56"
-        data-callback="onTurnstileSuccess"
-        data-expired-callback="onTurnstileExpired"
-        data-error-callback="onTurnstileError">
-    </div>
-</div>
-                
 
-<button class="btn-magic" id="start-flow-btn" type="button">
-    Iniciar Diagnóstico
-    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-</button>
+                <div class="turnstile-wrap">
+                    <div
+                        id="turnstile-widget"
+                        class="cf-turnstile"
+                        data-sitekey="0x4AAAAAACrvwz0HKnicGq56"
+                        data-callback="onTurnstileSuccess"
+                        data-expired-callback="onTurnstileExpired"
+                        data-error-callback="onTurnstileError"
+                    ></div>
+                </div>
+
+                <button class="btn-magic" id="start-flow-btn" type="button">
+                    Iniciar Diagnóstico
+                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                </button>
             </div>
         </div>
 
@@ -81,7 +109,9 @@
                     </svg>
                     <div class="pulse-core"></div>
                 </div>
-                <h2 class="status-text" id="loading-title">Conectando con nuestro Agente</h2>
+                <h2 class="status-text" id="loading-title">
+                    Conectando con nuestro Agente
+                </h2>
                 <p class="status-sub" id="loading-sub"></p>
             </div>
         </div>
@@ -93,18 +123,23 @@
                 </div>
                 <div style="display: flex; gap: 1rem; align-items: center;">
                     <div class="context-tag">
-                        <i class="fas fa-database"></i> <span id="tag-company"></span>
+                        <i class="fas fa-database"></i>
+                        <span id="tag-company"></span>
                     </div>
-                    <!--<button class="btn-finish" onclick="finishInterview()">Finalizar Sesión</button>-->
+                    <!-- <button class="btn-finish" onclick="finishInterview()">Finalizar Sesión</button> -->
                 </div>
             </div>
 
-            <div class="chat-scroll" id="chat-history">
-                </div>
+            <div class="chat-scroll" id="chat-history"></div>
 
             <div class="input-dock">
                 <div class="dock-container">
-                    <input type="text" id="chat-input" placeholder="Responde para profundizar el diagnóstico..." onkeypress="handleKeyPress(event)">
+                    <input
+                        type="text"
+                        id="chat-input"
+                        placeholder="Responde para profundizar el diagnóstico..."
+                        onkeypress="handleKeyPress(event)"
+                    />
                     <button class="btn-send" onclick="sendMessage()">
                         <i class="fas fa-paper-plane"></i>
                     </button>
@@ -117,27 +152,21 @@
                 <div class="success-icon">
                     <i class="fas fa-check"></i>
                 </div>
-                <h2 class="huge-title" style="font-size: 1.8rem;">Diagnóstico Finalizado</h2>
-                <p class="huge-subtitle" style="margin-bottom: 0;">La entrevista ha sido procesada exitosamente.</p>
-                
-                <div class="json-viewer">
-                    <pre><code id="json-output">
-</code></pre>
-                </div>
-
-                <button class="btn-magic" onclick="alert('Descargando archivo diagnostico-nexus.json...')">
-                    Descargar Output (.json)
-                    <span class="arrow"><i class="fas fa-download"></i></span>
-                </button>
+                <h2 class="huge-title" style="font-size: 1.8rem;">
+                    Diagnóstico Finalizado
+                </h2>
+                <p class="huge-subtitle" style="margin-bottom: 0;">
+                    Gracias. Hemos recibido tu información correctamente.
+                </p>
             </div>
         </div>
-
     </div>
 
-        <script>
-            window.NEXUS_API_BASE_URL = window.NEXUS_API_BASE_URL || "https://api-y2upbboyhq-tl.a.run.app/v1";
-        </script>
-        <script src="js/chat.js"></script>
-
+    <script>
+        window.NEXUS_API_BASE_URL =
+            window.NEXUS_API_BASE_URL ||
+            "https://api-y2upbboyhq-tl.a.run.app/v1";
+    </script>
+    <script src="js/chat.js"></script>
 </body>
 </html>
