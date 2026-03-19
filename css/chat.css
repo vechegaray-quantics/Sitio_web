@@ -144,8 +144,10 @@
         .message.user { align-self: flex-end; flex-direction: row-reverse; }
 
         .avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem; }
+        .avatar-svg { width: 20px; height: 20px; display: block; }
+        .topbar-icon { width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; }
         .message.ai .avatar { background: rgba(0, 180, 216, 0.1); border: 1px solid rgba(0, 180, 216, 0.3); color: var(--accent); }
-        .message.user .avatar { background: rgba(255,255,255,0.1); color: var(--txt); border: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem;}
+        .message.user .avatar { background: rgba(255,255,255,0.1); color: var(--txt); border: 1px solid rgba(255,255,255,0.2); }
 
         .bubble { font-size: 0.95rem; line-height: 1.6; padding: 1.1rem 1.4rem; }
         .message.ai .bubble { background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border); border-radius: 4px 20px 20px 20px; color: var(--txt); }
@@ -157,7 +159,8 @@
         .dock-container input { flex-grow: 1; border: none; outline: none; font-size: 0.95rem; color: var(--txt); background: transparent; font-family: 'Inter', sans-serif;}
         .dock-container input::placeholder { color: rgba(255,255,255,0.4); }
 
-        .btn-send { background: var(--accent); color: var(--bg-dark); border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s var(--ease-spring); font-size: 1.1rem; }
+        .btn-send { background: var(--accent); color: var(--bg-dark); border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s var(--ease-spring); }
+        .send-icon { width: 18px; height: 18px; display: block; }
         .btn-send:hover { transform: scale(1.05); background: #009ac2; }
 
         .dot-typing { display: flex; gap: 4px; padding: 0.5rem; }

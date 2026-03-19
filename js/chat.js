@@ -216,10 +216,19 @@ function createMessage(content, sender, isTyping = false) {
     wrapper.className = `message ${sender}`;
     if (isTyping) wrapper.id = 'typing-indicator';
 
-    const avatarIcon =
-        sender === 'ai'
-            ? '<i class="fas fa-brain"></i>'
-            : '<i class="fas fa-user"></i>';
+    const robotAvatarIcon = `
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="avatar-svg avatar-svg-ai">
+            <path d="M12 2a1 1 0 0 1 1 1v1.18a4.5 4.5 0 0 1 3.82 3.82H18a3 3 0 0 1 3 3v4a3 3 0 0 1-3 3h-1.18A4.5 4.5 0 0 1 13 20.82V22a1 1 0 1 1-2 0v-1.18A4.5 4.5 0 0 1 7.18 17H6a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3h1.18A4.5 4.5 0 0 1 11 4.18V3a1 1 0 0 1 1-1Z" fill="currentColor" opacity="0.14"/>
+            <path d="M12 3v2M8.5 15h7M9 8h6a2.5 2.5 0 0 1 2.5 2.5v3A2.5 2.5 0 0 1 15 16h-6a2.5 2.5 0 0 1-2.5-2.5v-3A2.5 2.5 0 0 1 9 8Zm1.5 3.25h.01M13.5 11.25h.01M4 11v2M20 11v2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>`;
+    const userAvatarIcon = `
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="avatar-svg avatar-svg-user">
+            <path d="M12 12.25a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z" fill="currentColor" opacity="0.2"/>
+            <path d="M12 13.5c-3.38 0-6.25 2.23-7.22 5.3-.18.56.28 1.2.87 1.2h12.7c.59 0 1.05-.64.87-1.2-.97-3.07-3.84-5.3-7.22-5.3Z" fill="currentColor" opacity="0.2"/>
+            <path d="M12 12.25a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Zm0 1.25c-3.38 0-6.25 2.23-7.22 5.3-.18.56.28 1.2.87 1.2h12.7c.59 0 1.05-.64.87-1.2-.97-3.07-3.84-5.3-7.22-5.3Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>`;
+
+    const avatarIcon = sender === 'ai' ? robotAvatarIcon : userAvatarIcon;
 
     const bubbleContent = isTyping
         ? '<div class="dot-typing"><span></span><span></span><span></span></div>'
